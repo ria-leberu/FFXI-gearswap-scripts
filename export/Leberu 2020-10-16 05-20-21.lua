@@ -1,0 +1,17 @@
+sets.exported={
+    main="Sandung",
+    sub="Thief's Knife",
+    range="Moonring Blade",
+    head="Mummu Bonnet +1",
+    body="Mummu Jacket +1",
+    hands="Mummu Wrists +1",
+    legs="Meg. Chausses",
+    feet="Mummu Gamash. +1",
+    neck="Spectacles",
+    waist="Cetl Belt",
+    left_ear="Allegro Earring",
+    right_ear="Thunder Earring",
+    left_ring="Enlivened Ring",
+    right_ring="Rajas Ring",
+    back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10',}},
+}

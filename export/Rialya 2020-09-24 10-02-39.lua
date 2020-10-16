@@ -1,0 +1,17 @@
+sets.exported={
+    main="Tizona",
+    sub={ name="Machaera +2", augments={'TP Bonus +1000',}},
+    ammo="Amar Cluster",
+    head="Jhakri Coronal +2",
+    body="Assim. Jubbah +2",
+    hands="Malignance Gloves",
+    legs="Jhakri Slops +1",
+    feet="Jhakri Pigaches +1",
+    neck="Tjukurrpa Medal",
+    waist="Prosilio Belt",
+    left_ear="Flame Pearl",
+    right_ear="Flame Pearl",
+    left_ring="Rajas Ring",
+    right_ring="Ifrit Ring",
+    back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
+}

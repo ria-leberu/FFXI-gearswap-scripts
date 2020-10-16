@@ -1,0 +1,17 @@
+sets.exported={
+    main={ name="Gabaxorea", augments={'MP+30','"Mag.Atk.Bns."+10','INT+7',}},
+    sub={ name="Gabaxorea", augments={'MP+30','"Mag.Atk.Bns."+10','INT+7',}},
+    ammo="Jukukik Feather",
+    head={ name="Taeon Chapeau", augments={'Attack+11','Crit.hit rate+3','Crit. hit damage +3%',}},
+    body={ name="Taeon Tabard", augments={'Accuracy+11','Crit.hit rate+3','Crit. hit damage +3%',}},
+    hands={ name="Taeon Gloves", augments={'Attack+14','Crit.hit rate+3','Crit. hit damage +3%',}},
+    legs={ name="Taeon Tights", augments={'Accuracy+9','Crit.hit rate+3','Weapon skill damage +3%',}},
+    feet={ name="Taeon Boots", augments={'Attack+21','Crit.hit rate+3','Crit. hit damage +3%',}},
+    neck="Light Gorget",
+    waist="Snow Belt",
+    left_ear="Steelflash Earring",
+    right_ear="Bladeborn Earring",
+    left_ring="Rajas Ring",
+    right_ring="Ramuh Ring",
+    back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','Crit.hit rate+10','Damage taken-5%',}},
+}

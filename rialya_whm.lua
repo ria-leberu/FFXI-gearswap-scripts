@@ -1,31 +1,114 @@
--- Rialya's WHM Gearswap
+--[[ 
+Author: Rialya (Asura, Valefor, Bismarck)
+
+Rialya's WHM Gearswap
+
+LUA file for White Mage gear swap and on-th-fly mode switching.
+
+-Cure (precast) Prioritizes Fast Cast and Cure Cast Time reduction. 
+-Cure (midcast) prioritizes Potency, MP Efficiency, Afflatus Solace, and Enmity Reduction
+-White Mage Trait "Tranquil Heart" bases its enmity reduction on healing 
+magic skill, resulting in a -25% enmity reduction at 500 healing magic skill 
+(-0.5 Enmity/10 Healing Magic). Enmity generation will be calculated by:
+(1-EnmityEquipment/100)*(1-(HealingMagicSkill/10*0.5))
+
+]]--
 include('organizer-lib.lua')
+
+--Display Text for Mode Switching
+text = require('texts')
+display = text.new()
+mode = "Support"
+str = 'Current Mode: ${mode|Support}'
+display:text(str)
+display:font("Consolas")
+display:size(10)
+display:pos(400,880)
+display:show()
 
 function get_sets()
 	--Starup Settings
-		include('rialya-commonitems.lua') --Essential carry inventory items (i.e. Echo Drops, Remedy)
-		windower.send_command('du blinking self always off; wait 8; input /lockstyleset 1; wait 1; du blinking self always on;')
+	include('rialya-commonitems.lua') --Essential carry inventory items (i.e. Echo Drops, Remedy)
+	windower.send_command('du blinking self always off; wait 8; input /lockstyleset 1; wait 1; du blinking self always on;')
+	windower.send_command('bind f9 gs c toggle Mode set')	--sets F9 to toggle Frontline Mode
+	windower.send_command('bind f10 gs c toggle Weapon set')	--sets F9 to toggle Armor Mode
+	
+	--Binds Single Key Press to replace macros
+	--Single Number Key
+	windower.send_command('bind %1 input /ma "Cure III" <t>')
+	windower.send_command('bind %2 input /ma "Cure IV" <t>')
+	windower.send_command('bind %3 input /ma "Cure V" <t>')
+	--windower.send_command('bind %4 input ')
+	windower.send_command('bind %5 input /ma "Haste" <t>')
+	--windower.send_command('bind %6 input ')
+	--windower.send_command('bind %7 input ')
+	--windower.send_command('bind %8 input ')
+	--windower.send_command('bind %9 input ')
+	--windower.send_command('bind %0 input ')
+	
+	--CTRL + Number Key
+	windower.send_command('bind %^1 input /ma "Curaga" <t>')
+	windower.send_command('bind %^2 input /ma "Curaga II" <t>')
+	windower.send_command('bind %^3 input /ma "Curaga III" <t>')
+	windower.send_command('bind %^4 input /ma "Curaga IV" <t>')
+	windower.send_command('bind %^5 input /ma "Curaga V" <t>')
+	windower.send_command('bind %^6 input /ja "Penury" <me>')
+	windower.send_command('bind %^7 input /ja "Accession" <me>')
+	--windower.send_command('bind %^8 input ')
+	--windower.send_command('bind %^9 input ')
+	--windower.send_command('bind %^0 input ')
+	
+	--ALT + Number Key
+	--windower.send_command('bind %!1 input ')
+	windower.send_command('bind %!2 input /ma "Repose" <t>')
+	windower.send_command('bind %!3 input /ma "Haste" <t>')
+	--windower.send_command('bind %!4 input ')
+	--windower.send_command('bind %!5 input ')
+	windower.send_command('bind %!6 input /ja "Celerity" <me>')
+	--windower.send_command('bind %!7 input ')
+	--windower.send_command('bind %!8 input ')
+	--windower.send_command('bind %!9 input ')
+	--windower.send_command('bind %!0 input ')
+	
+	--Misc Keys
+	windower.send_command('bind %q input /ja "Divine Caress" <me>')
+	
+	-- Weapon and Armor Type Change (Default sets to 1) 
+	Mode_Index = 1
+	Armor_Index = 1
+	Mode_Set_Names = {"Support", "Frontline"}
+	Armor_Set_Names = {"Support", "Hybrid", "PDT", "MDT"}
 	-- Obi Sets
-		sets.obi = {}
-		sets.obi.Light = {waist='Korin Obi'}
-		sets.obi.Dark = {waist='Anrin Obi'}
-	-- Aftercast Sets
-		--Defense/Kiting/Recovery Set
-	sets.Standing = {
-		main="Yagrush", 
-		sub="Genbu's shield", 
-		body="Respite cloak",  
-		neck="Twilight torque",  
-		ear2="Novia earring", 
-		hands="Dynasty mitts", 
-		ring1="Dark ring", 
-		ring2="Shneddick ring", 
-		waist="Fucho-no-obi",
-		back="Cheviot cape", 
-		legs="Assiduity pants +1", 
-		feet="Helios boots",
+	sets.obi = {}
+	sets.obi.Light = {waist='Korin Obi'}
+	sets.obi.Dark = {waist='Anrin Obi'}
+	sets.weapons = {}
+	sets.weapons['Support'] = {}
+	sets.weapons['Frontline'] = {
+		main="Yagrush",
+		sub="Genbu's shield",
 	}
-	sets.StandingTP = {
+	sets.weapons.dispelga = {
+		main="Daybreak",
+	}
+	sets.idle = { --[[Idle Gear: Refresh, DamageTakenDown, MagicDamageTakenDown, PhysicalDamageTakenDown, M.EvasionUp, EvasionUp]]--
+		main="Malignance pole",
+		sub="Irenic Strap",
+		ammo="Staunch Tathlum",
+		head="Befouled Crown",
+		body="Ebers Bliaud +1",
+		hands="Ayanmo manopolas +1",
+		legs="Assid. Pants +1",
+		feet="Ayanmo gambieras +1",
+		neck="Loricate torque +1",
+		waist="Fucho-no-Obi",
+		left_ear="Odnowa Earring +1",
+		right_ear="Novia Earring",
+		left_ring="Defending Ring",
+		right_ring="Shneddick Ring",
+		back="Alaunus's cape",
+	}
+	sets.idle.tp = { --[[Gear (Melee): Refresh, DamageTakenDown, MagicDamageTakenDown, PhysicalDamageTakenDown, M.EvasionUp, EvasionUp]]--
 		head="Theophany cap", 
 		body="Theophany briault", 
 		neck="Asperity necklace", 
@@ -39,7 +122,23 @@ function get_sets()
 		legs="Telchine braconi", 
 		feet="Helios boots",
 	}
-	sets.WSRealmrazer = {
+	sets.tp = {
+		head="Theophany cap", 
+		body="Theophany briault", 
+		neck="Asperity necklace", 
+		ear1="Brutal earring", 
+		ear2="Suppanomimi", 
+		hands="Telchine gloves", 
+		ring1="Mars's Ring", 
+		ring2="Rajas ring", 
+		waist="Cetl belt",
+		back="Cheviot cape", 
+		legs="Telchine braconi", 
+		feet="Helios boots",
+	}
+	sets.WS = {
+	}
+	sets.WS.Realmrazer = {
 		head="Theophany cap", 
 		body="Weatherspoon robe +1", 
 		neck="Light gorget", 
@@ -53,108 +152,161 @@ function get_sets()
 		legs="Telchine braconi", 
 		feet="Helios boots",
 	}
-		--Resting
-	sets.Resting = {
-		main="Boonwell staff", 
-		ammo="Clarus stone", 
-		head="Orvail Corona +1", 
-		neck="Grandiose chain", 
-		body="Chelona blazer", 
-		hands="Nares cuffs", 
-		ring2="Angha ring", 
-		back="Vita cape", 
-		waist="Qiqirn sash +1",
-		legs="Nisse slacks", 
-		feet="Chelona boots",
+	sets.resting = { --[[Resting Gear: MPRecoveredWhileHealing Refresh DamageTaken MP]]--
+		main="Boonwell staff", --MPRecoveredWhileHealing+18
+		ammo="Clarus stone", --MPRecoveredWhileHealing+2
+		head="Orvail Corona +1", --MPRecoveredWhileHealing+4
+		neck="Grandiose chain", --MPRecoveredWhileHealing+2
+		body="Chelona blazer", --MPRecoveredWhileHealing+8
+		hands="Nares cuffs", --MPRecoveredWhileHealing+4
+		ring2="Angha ring", --MPRecoveredWhileHealing+2
+		back="Vita cape", --MPRecoveredWhileHealing+3
+		waist="Qiqirn sash +1", --MPRecoveredWhileHealing+3
+		legs="Nisse slacks", --MPRecoveredWhileHealing+4
+		feet="Chelona boots", --MPRecoveredWhileHealing+5
 	}
-	-- Precast Sets
-	sets.Precast = {
+	-- precast Sets
+	sets.precast = { --[[Precast Gear (No Quickening): FastCast; Total SpellCast Reduction = 10 "Light Arts" +  53 "Equipment" = 63%]]--
 		main="Yagrush", 
-		sub="Sors shield",
-		ammo="Incantor stone", 			-- 2% Fast Cast
-		head="Nahtirah hat", 			-- 10% Fast Cast
-		ear1="Loquacious earring", 
-		hands="Gendewitha gages", 
-		back="Swith cape", 
-		waist="Witful belt",
-		legs="Artsieq hose",
-		feet="Chelona boots",
+		--sub="",
+		ammo="Incantor stone", 	-- 2% Fast Cast
+		head="Nahtirah hat", -- 10% Fast Cast
+		body="Inyanga jubbah +1", --13% fast cast
+		ear1="Loquacious earring", --2% fast cast
+		ear2="Malignance earring", --4fc
+		hands="Gendewitha gages", -- 7% fast cast
+		back="Swith cape", -- 3% fast cast
+		waist="Channeler's stone", -- 2% fast cast
+		legs="Artsieq hose", -- 5% fast cast
+		feet="Chelona boots", -- 4% fast cast
 	}
-	sets.PrecastCure = {
-		main="Ababinili", 
-		ammo="Incantor stone", 
-		head="Nahtirah hat", 
-		neck="Aceso's choker", 
-		ear1="Loquacious earring", 
-		ear2="Novia earring", 
-		body="Ebers Bliaud", 
-		hands="Gendewitha gages", 
-		ring1="Mediator's ring", 
-		ring2="Ephedra ring", 
-		back="Swith cape", 
-		waist="Witful belt", 
-		legs="Orison pantaloons +2", 
-		feet="Chelona boots",
+	sets.precast.cure = { --[[Total CureCast Reduction = 10 "Light Arts" + 20 "Merits: Cure Cast Reduction" + 67 "Equipment" = 97%]]--
+		--main="Ababinili", -- cure spellcasting time -10%
+		ammo="Incantor stone", -- 2% fast cast
+		head="Nahtirah hat",  -- 10% fast cast
+		neck="Aceso's choker", -- cure spellcasting time -10% 
+		ear1="Loquacious earring", -- 2% fast cast
+		ear2="Malignance earring", --4fc
+		--body="", 
+		hands="Gendewitha gages", -- 7% fast cast
+		--ring1="", 
+		--ring2="", 
+		back="Swith cape", -- 3% fast cast
+		waist="Channeler's stone", -- 2% fast cast
+		legs="Orison pantaloons +2", --healing magic casting time -12%
+		feet="Chelona boots", -- 4% fast cast
 	}
-	sets.PrecastStatus = {
+	sets.precast.reduction = { --Precast Gear with Quickening
+		--main="", 
+		--sub="",
+		ammo="Incantor Stone",
+		head="Nahtirah Hat",
+		body="Inyanga Jubbah +1",
+		hands={ name="Gendewitha Gages", augments={'Phys. dmg. taken -1%','Song recast delay -1',}},
+		legs="Artsieq Hose",
+		feet="Chelona Boots",
+		neck="Aceso's Choker",
+		waist="Witful Belt",
+		left_ear="Loquac. Earring",
+		ear2="Malignance earring",
+		left_ring="Persis Ring",
+		right_ring="Tamas Ring",
+		back="Swith Cape",
+	}
+	sets.precast.status = { --[[Total Status Removal Cast Reduction = 10 "Light Arts" + 50 "White Mage Divine Benison V"+ 53 "Equipment" = 113% (80%Cap)]]--
 		main="Yagrush", 
-		sub="Sors shield",
-		ammo="Incantor stone", 
-		head="nahtirah hat", 
-		neck="Aceso's choker", 
-		ear1="Loquacious earring", 
-		ear2="Novia earring", 
-		body="Ebers Bliaud", 
-		hands="Gendewitha gages", 
-		ring1="Mediator's ring", 
-		ring2="Ephedra ring", 
-		back="Swith cape", 
-		waist="Witful belt", 
-		legs="Orison pantaloons +2", 
-		feet="Chelona boots",
+		sub="",
+		ammo="Incantor stone", -- 2% fast cast
+		head="Nahtirah hat", -- 10% fast cast
+		neck="Aceso's choker", -- cure spellcasting time -10% 
+		ear1="Loquacious earring", -- 2% fast cast
+		ear2="Malignance earring", --4% fast cast
+		body="", 
+		hands="Gendewitha gages", -- 7% fast cast
+		ring1="", 
+		ring2="", 
+		back="Swith cape", -- 3% fast cast
+		waist="Witful belt", -- 3% fast cast
+		legs="Orison pantaloons +2", --healing magic casting time -12%
+		feet="Chelona boots",  -- 4% fast cast
 	}
 --Midcast Sets
 --Healing Magic 
 	--Cure Potency
-	sets.MidcastCurePotency = {
-		main="Tamaxchi", 
-		sub="Sors shield", 
-		ammo="Clarus stone", 
-		head="Gendewitha caubeen", 
-		neck="Phrenic torque", 
-		ear1="Lifestorm earring", 
-		ear2="Novia earring", 
-		body="Gendewitha Bliaut", 
-		hands="Bokwus gloves", 
-		ring1="Mediator's ring", 
-		ring2="Ephedra ring", 
-		back="Mending cape", 
-		waist="Pythia sash", 
-		legs="Nisse slacks", 
-		feet="Orvail souliers +1",
+	sets.midcast = {}
+	sets.midcast.recast = { --For spells unaffected by other stats and benefit from reduced recast and conserve mp
+		main="Earth Staff",
+		sub="Irenic Strap",
+		ammo="Clarus Stone",
+		head="Theophany Cap",
+		body="Count's Garb",
+		hands="Shrieker's Cuffs",
+		legs="Aya. Cosciales +1",
+		feet={ name="Helios Boots", augments={'"Mag.Atk.Bns."+24','Magic crit. hit rate +6','MP+9',}},
+		neck="Loricate torque +1",
+		waist="Pythia Sash",
+		left_ear="Loquac. Earring",
+		ear2="Malignance earring",
+		left_ring="Persis Ring",
+		right_ring="Rajas Ring",
+		back={ name="Alaunus's Cape", augments={'Damage taken-5%',}},
+	}
+	sets.midcast.CurePotency = { --[[ AfflatusSolace, Cure Potency, EnmityDown, HealingMagicSkill, MND, ConserveMP, Haste, 50% potency  ]]--
+		main="Iridal Staff",
+		sub="Amicus Grip",
+		ammo="Erlene's Notebook",
+		head={ name="Gende. Caubeen", augments={'Phys. dmg. taken -2%','"Cure" potency +2%',}},
+		body="Ebers Bliaud +1",
+		hands={ name="Telchine Gloves", augments={'"Cure" potency +7%',}},
+		legs="Ebers Pantaloons",
+		feet="Skaoi Boots",
+		neck="Phrenic Torque",
+		waist="Pythia Sash",
+		left_ear="Mendi. Earring",
+		right_ear="Novia Earring",
+		left_ring="Mediator's Ring",
+		right_ring="Persis Ring",
+		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+5','Enmity-10','Damage taken-5%',}},
+	}
+	sets.midcast.CuragaPotency = { --[[ Cure Potency, EnmityDown, MND, HealingMagicSkill, ConserveMP, Haste, 50% potency  ]]--
+		main="Tamaxchi", -- Cure potency+22% 
+		sub="Sors shield", -- Cure potency+3% Enmity-5
+		ammo="Clarus stone", -- ConserveMP+3
+		head="Gendewitha caubeen", -- Cure potency+12% Enmity-8
+		neck="Phrenic torque", -- Enmity-7
+		ear1="Lifestorm earring", -- Enmity-1
+		ear2="Novia earring", -- Enmity-7
+		body="Ebers bliaud +1", -- AfflatusSolace+12 HealingMagicSkill+22
+		hands="Bokwus gloves", -- Cure potency+13% Enmity-3
+		ring1="Mediator's ring", -- Enmity-3
+		ring2="Ephedra ring", -- HealingMagicSkill+7 Enmity-3
+		back="Alaunus's cape", 
+		waist="Pythia sash", -- Enmity-4
+		legs="Nisse slacks", -- Enmity-5
+		feet="Orvail souliers +1", -- Enmity-5
 	}
 	--Status Removal
-	sets.MidcastStatusNaSpells = {
-		main="Yagrush", 
-		sub="Sors shield",
-		ammo="Clarus stone", 
-		head="Ebers Cap", 
-		neck="Phrenic torque", 
-		ear1="Lifestorm earring", 
-		ear2="Novia earring", 
-		body="Weatherspoon robe +1", 
-		hands="Bokwus gloves", 
-		ring1="Mediator's ring", 
-		ring2="Ephedra ring", 
-		back="Mending cape", 
-		waist="Korin Obi", 
-		legs="Nisse slacks", 
-		feet="Orvail souliers +1",
+	sets.midcast.StatusNaSpells = { --[[ DivineVeil, EnmityDown, Haste, ConserveMP ]]--
+		main="Yagrush", --EnhancesDivineVeil
+		sub="",
+		ammo="Clarus stone", --ConserveMP
+		head="Ebers Cap", --EnhancesDivineVeil+20
+		neck="Phrenic torque", -- Enmity-7
+		ear1="Lifestorm earring", -- Enmity-1
+		ear2="Novia earring", -- Enmity-7
+		body="Weatherspoon robe +1", -- Haste+3
+		hands="Bokwus gloves", -- Enmity-3 Haste+3
+		ring1="Mediator's ring", -- Enmity-5
+		ring2="", 
+		back="Mending cape", -- Enmity-6
+		waist="", 
+		legs="Nisse slacks", -- Enmity-5
+		feet="Orvail souliers +1", --Enmity-5 Haste+1
 	}
-	sets.MidcastStatusCursna = {
-		main="Yagrush", 
-		sub="Sors shield", 
-		ammo="Clarus stone", 
+	sets.midcast.StatusCursna = { --[[ DivineVeil, EnhanceCursna, HealingMagicSkill, EnmityDown, Haste, ConserveMP ]]--
+		main="Yagrush", --EnhanceDivineVeil
+		sub="", 
+		ammo="Clarus stone", --ConserveMP
 		head="Gendewitha caubeen", 
 		neck="Malison medallion", 
 		ear1="Lifestorm earring", 
@@ -163,17 +315,17 @@ function get_sets()
 		hands="Bokwus gloves", 
 		ring1="Mediator's ring", 
 		ring2="Ephedra ring", 
-		back="Mending cape", 
+		back="Alaunus's cape",  
 		waist="Cetl belt", 
 		legs="Theophany pantaloons", 
 		feet="Gendewitha galoshes",
 	}
-	sets.MidcastEraseSacrificeEsuna = {
+	sets.midcast.EraseSacrificeEsuna = {
 		main="Yagrush", 
 		sub="Sors shield",
 		ammo="Clarus stone", 
 		head="Gendewitha caubeen", 
-		neck="Phrenic torque", 
+		neck="Cleric's torque", 
 		ear1="Lifestorm earring", 
 		ear2="Novia earring", 
 		body="Gendewitha Bliaut", 
@@ -185,7 +337,7 @@ function get_sets()
 		legs="Nisse slacks", 
 		feet="Orvail souliers +1",
 	}
-	sets.MidcastDivineCaress = {
+	sets.midcast.DivineCaress = {
 		main="Yagrush",
 		ammo="Clarus stone", 
 		head="Gendewitha caubeen", 
@@ -202,7 +354,7 @@ function get_sets()
 		feet="Orvail souliers +1",
 	}
 --Enhancing Magic
-	sets.MidcastMaxEnhancing = {
+	sets.midcast.MaxEnhancing = {
 		main="Ababinili", 
 		sub="Fulcio Grip", 
 		ammo="Clarus stone", 
@@ -210,7 +362,7 @@ function get_sets()
 		neck="Colossus's torque", 
 		ear1="Lifestorm earring", 
 		ear2="Novia earring", 
-		body="Ebers Bliaud", 
+		body="Ebers Bliaud +1", 
 		hands="Dynasty Mitts", 
 		ring1="Mediator's ring", 
 		ring2="Ephedra ring", 
@@ -220,25 +372,25 @@ function get_sets()
 		feet="Orison duckbills +2",
 	}
 --Regen
-	sets.MidcastEnhancingRegen = {
-		main="Ababinili", 
+	sets.midcast.EnhancingRegen = {
+		--main="Ababinili", 
 		sub="Fulcio Grip", 
 		ammo="Clarus stone", 
 		head="Ebers Cap", 
 		neck="Noetic torque", 
 		ear1="Lifestorm earring", 
 		ear2="Novia earring", 
-		body="Cleric's briault +2", 
+		body="Cleric's briault +2", --Enhance Regen Potency
 		hands="Orison mitts +2", 
 		ring1="Mediator's ring", 
 		ring2="Ephedra ring", 
 		back="Mending cape", 
-		waist="Witful belt", 
-		legs="Theophany pantaloons", 
+		waist="Bougonia rope", --conserve mp +3
+		legs="Theophany pantaloons", --Increase Regen Duration
 		feet="Orison duckbills +2",
 	}
 --Barspell
-	sets.MidcastEnhancingBarspell = {
+	sets.midcast.EnhancingBarspell = { --At leastr 500 enhancing, Resistance+, Duration+
 		main="Ababinili", 
 		sub="Fulcio Grip", 
 		ammo="Clarus stone", 
@@ -246,7 +398,7 @@ function get_sets()
 		neck="Colossus's torque", 
 		ear1="Lifestorm earring", 
 		ear2="Novia earring", 
-		body="Ebers Bliaud", 
+		body="Ebers Bliaud +1", 
 		hands="Dynasty Mitts", 
 		ring1="Mediator's ring", 
 		ring2="Ephedra ring", 
@@ -255,25 +407,43 @@ function get_sets()
 		legs="Piety pantaloons", 
 		feet="Orison duckbills +2",
 	}
---Enfeebling Magic
-	sets.MidcastEnfeebling = {
-		main="Marin staff", 
-		sub="Mephitis grip", 
-		ammo="", 
-		head="Weatherspoon corona +1", 
-		neck="Imbodla Necklace", 
-		ear1="Lifestorm earring", 
-		ear2="Psystorm earring", 
-		body="Theophany briault", 
-		hands="Gendewitha gages", 
-		ring1="Mediator's ring", 
-		ring2="Angha Ring", 
-		back="Refraction cape", 
-		waist="Aswang sash", 
-		legs="Telchine braconi", 
-		feet="Orvail souliers +1",
+--Enhancing Duration
+	sets.midcast.EnhancingDuration = {
+		main="Yagrush",
+		sub="Ammurapi Shield",
+		ammo="Clarus Stone",
+		head="Befouled Crown",
+		body={ name="Telchine Chas.", augments={'"Cure" potency +7%',}},
+		hands="Dynasty Mitts",
+		legs={ name="Piety Pantaloons", augments={'Enhances "Afflatus Misery" effect',}},
+		feet="Orsn. Duckbills +2",
+		neck="Colossus's Torque",
+		waist="Embla Sash",
+		left_ear="Lifestorm Earring",
+		right_ear="Novia Earring",
+		left_ring="Mediator's Ring",
+		right_ring="Ephedra Ring",
+		back="Mending Cape",
 	}
-	sets.MidcastElemental = {
+--Enfeebling Magic
+	sets.midcast.Enfeebling = {
+		main="Marin Staff",
+		sub="Enki Strap",
+		ammo="Elis Tome",
+		head="C. Palug Crown",
+		body="Inyanga Jubbah +1",
+		hands="Inyanga Dastanas +1",
+		legs={ name="Chironic Hose", augments={'Blood Pact Dmg.+6','Pet: STR+9','Accuracy+11 Attack+11','Mag. Acc.+15 "Mag.Atk.Bns."+15',}},
+		feet="Skaoi Boots",
+		neck="Noetic Torque",
+		waist="Rumination Sash",
+		left_ear="Lifestorm Earring",
+		right_ear="Psystorm Earring",
+		left_ring="Mediator's Ring",
+		right_ring="Ayanmo Ring",
+		back="Refraction Cape",
+	}
+	sets.midcast.Elemental = {
 		main="Marin staff", 
 		sub="Mephitis grip", 
 		ammo="", 
@@ -290,11 +460,11 @@ function get_sets()
 		legs="Telchine braconi", 
 		feet="Orvail souliers +1",
 	}
-	sets.MidcastEnfeeblingWhiteAcc = {
+	sets.midcast.EnfeeblingWhiteAcc = {
 		main="Marin staff", 
 		sub="Mephitis grip", 
 		ammo="", 
-		head="Weatherspoon corona +1", 
+		head="Cath Palug crown", 
 		neck="Imbodla Necklace", 
 		ear1="Lifestorm earring", 
 		ear2="Psystorm earring", 
@@ -307,25 +477,25 @@ function get_sets()
 		legs="Telchine braconi", 
 		feet="Orvail souliers +1",
 	}
-	sets.MidcastDivine = {
-		main="Marin staff", 
-		sub="Mephitis grip", 
-		ammo="", 
-		head="Weatherspoon corona +1", 
-		neck="Imbodla Necklace", 
-		ear1="Lifestorm earring", 
-		ear2="Psystorm earring", 
-		body="Theophany briault", 
-		hands="Helios gloves", 
-		ring1="Mediator's ring", 
-		ring2="Angha Ring", 
-		back="Refraction cape", 
-		waist="Aswang sash", 
-		legs="Theophany pantaloons", 
-		feet="Orvail souliers +1",
+	sets.midcast.Divine = {
+		main="Marin Staff",
+		sub="Enki Strap",
+		ammo="Elis Tome",
+		head="C. Palug Crown",
+		body="Inyanga Jubbah +1",
+		hands="Inyanga Dastanas +1",
+		legs={ name="Chironic Hose", augments={'Blood Pact Dmg.+6','Pet: STR+9','Accuracy+11 Attack+11','Mag. Acc.+15 "Mag.Atk.Bns."+15',}},
+		feet="Skaoi Boots",
+		neck="Noetic Torque",
+		waist="Rumination Sash",
+		left_ear="Lifestorm Earring",
+		right_ear="Psystorm Earring",
+		left_ring="Mediator's Ring",
+		right_ring="Ayanmo Ring",
+		back="Refraction Cape",
 	}
 	--Black Magic Accuracy
-	sets.MidcastEnfeeblingBlackAcc = {
+	sets.midcast.EnfeeblingBlackAcc = {
 		main="Marin staff", 
 		sub="Mephitis grip", 
 		ammo="", 
@@ -342,24 +512,24 @@ function get_sets()
 		legs="Telchine braconi", 
 		feet="Orvail souliers +1",
 	}
-	sets.MidcastEnfeeblingWhitePotency = {
-		main="Marin staff", 
-		sub="Mephitis grip", 
-		ammo="", 
-		head="Weatherspoon corona +1", 
-		neck="Imbodla Necklace", 
-		ear1="Lifestorm earring", 
-		ear2="Psystorm earring", 
-		body="Theophany briault", 
-		hands="Gendewitha gages", 
-		ring1="Mediator's ring", 
-		ring2="Angha Ring", 
-		back="Refraction cape", 
-		waist="Aswang sash", 
-		legs="Telchine braconi", 
-		feet="Orvail souliers +1",
+	sets.midcast.EnfeeblingWhitePotency = {
+		main="Marin Staff",
+		sub="Enki Strap",
+		ammo="Elis Tome",
+		head="C. Palug Crown",
+		body="Inyanga Jubbah +1",
+		hands="Inyanga Dastanas +1",
+		legs={ name="Chironic Hose", augments={'Blood Pact Dmg.+6','Pet: STR+9','Accuracy+11 Attack+11','Mag. Acc.+15 "Mag.Atk.Bns."+15',}},
+		feet="Skaoi Boots",
+		neck="Noetic Torque",
+		waist="Rumination Sash",
+		left_ear="Lifestorm Earring",
+		right_ear="Psystorm Earring",
+		left_ring="Mediator's Ring",
+		right_ring="Ayanmo Ring",
+		back="Refraction Cape",
 	}
-	sets.MidcastDarkAcc = {
+	sets.midcast.DarkAcc = {
 		main="Marin staff", 
 		sub="Mephitis grip", 
 		ammo="", 
@@ -376,7 +546,7 @@ function get_sets()
 		legs="Telchine braconi", 
 		feet="Orvail souliers +1",
 	}		
-	sets.MidcastDrainAspir = {
+	sets.midcast.DrainAspir = {
 		main="Marin staff", 
 		sub="Mephitis grip", 
 		ammo="", 
@@ -394,25 +564,42 @@ function get_sets()
 		feet="Orvail souliers +1",
 	}
 end
-
--- Events (Casting)
-
-function precast(spell)
-	-- Magic Precast Sets
-	if spell.action_type == 'Magic' then
-		if spell.name == 'Erase' or spell.name == 'Poisona' or spell.name == 'Paralyna' or spell.name == 'Silena' or spell.name == 'Blindna' or spell.name == 'Stona' or spell.name == 'Viruna' or spell.name == 'Cursna' then
-		equip(sets.PrecastStatus)
-		add_to_chat(140, '**Status Precast Gear Equipped**')
-		elseif spell.english:startswith('Cure') or spell.english:startswith('Cura') then
-		equip(sets.PrecastCure)
-		add_to_chat(140, '**Cure Speed Gear Equipped**')
-		else
-		equip(sets.Precast)
-		add_to_chat(140, '**Precast Gear Equipped**')
-		end
+function filtered_action(spell) -- Events (Casting)
+	if spell.name == 'Aurorastorm II' then
+		cancel_spell()
+		send_command('input /ma "Aurorastorm" <me>')
 	end
-	-- Light Arts and Dark Arts ChangeSpell
-	if spell.name == 'Light Arts' and buffactive['Light Arts'] then
+	if spell.name == 'Dispelga' then
+		equip(sets.weapons.dispelga)
+	end
+end
+function precast(spell) -- Magic precast Sets
+	if spell.action_type == 'Magic' then
+		if buffactive['Silence'] then
+			cancel_spell()
+			send_command('input /item "Echo Drops" <me>')
+		elseif spell.name == 'Erase' or spell.name == 'Poisona' or spell.name == 'Paralyna' or spell.name == 'Silena' or spell.name == 'Blindna' or spell.name == 'Stona' or spell.name == 'Viruna' or spell.name == 'Cursna' then
+			--set_combine(sets.precastStatus, sets.weapons[Mode_Set_Names[Mode_Index]])
+			equip(sets.precast.status)
+			add_to_chat(158, '**Status Precast Gear Equipped**')
+		elseif spell.english:startswith('Cure') or spell.english:startswith('Cura') then
+			--equip(sets.precastCure)
+			equip(sets.precast.cure, sets.weapons[Mode_Set_Names[Mode_Index]])
+			add_to_chat(158, '**Cure Speed Gear Equipped**')
+		elseif spell.name == 'Dispelga' then
+			equip(sets.precast, sets.weapons.dispelga)
+			add_to_chat(158, '**Precast Dispelga Gear Equipped**')
+		elseif spell.english:startswith('Raise') or spell.english:startswith('Reraise') or spell.name == 'Arise' then
+			equip((sets.precast.raise), sets.weapons[Mode_Set_Names[Mode_Index]])
+			add_to_chat(158, '**Raise Precast**')
+		else
+			equip(sets.precast, sets.weapons[Mode_Set_Names[Mode_Index]])
+			add_to_chat(158, '**Precast Gear Equipped**')
+		end
+		
+	end
+	
+	if spell.name == 'Light Arts' and buffactive['Light Arts'] then -- Light Arts and Dark Arts ChangeSpell
 		cancel_spell()
 		send_command('input /ja "Addendum: White" <me>')
 	elseif spell.name == 'Dark Arts' and buffactive['Dark Arts'] then
@@ -423,8 +610,7 @@ function precast(spell)
 		cancel_spell()
 		send_command('input /ja "Afflatus Misery" <me>')
 	end
-	--Spellchange Status Removal to Enfeeble
-	if spell.target.type == 'MONSTER' then
+	if spell.target.type == 'MONSTER' then --Spellchange Status Removal to Enfeeble
 		add_to_chat(140, '**MONSTER check**')
 		--Paralyze
 		if spell.name == 'Paralyna' then
@@ -442,69 +628,68 @@ function precast(spell)
 			send_command('input /ma "Silence" <t>')
 		end
 	end
-	
 end
-
 function midcast(spell)
-	
-	
-	
 	-- Enfeebling 
 	if spell.skill == 'Enfeebling Magic' then
-	equip(sets.MidcastEnfeebling)
-	add_to_chat(158, '**Enfeebling Gear Equipped**')
+		if spell.name == 'Dispelga' then
+			equip(sets.midcast.Enfeebling, sets.weapons.dispelga)
+			add_to_chat(158, '**Daybreak Gear Equipped**')
+		else
+			equip(sets.midcast.Enfeebling, sets.weapons[Mode_Set_Names[Mode_Index]])
+			add_to_chat(158, '**Enfeebling Gear Equipped**')
+		end
 	end
-	
 	if spell.skill == 'Elemental Magic' then
-	equip(sets.MidcastElemental)
+	equip(sets.midcast.Elemental, sets.weapons[Mode_Set_Names[Mode_Index]])
 	add_to_chat(158, '**Elemental Gear Equipped**')
 	end
-	
 	--Dark Magic
 	if spell.skill == 'Dark Magic' then
 		if spell.name == 'Drain' or spell.name == 'Aspir' then
-			equip(sets.MidcastDrainAspir)
+			equip(sets.midcast.DrainAspir, sets.weapons[Mode_Set_Names[Mode_Index]])
 			add_to_chat(158, '** Drain/Aspir Gear Equipped**')
 		else
-			equip(sets.MidcastDarkAcc)
+			equip(sets.midcast.DarkAcc, sets.weapons[Mode_Set_Names[Mode_Index]])
 			add_to_chat(158, '** Dark Magic Gear Equipped**')
 		end
 	end
 	--Cure Potency
-	if spell.english:startswith('Cure') or spell.english:startswith('Cura') then
+	if spell.english:startswith('Cure') or spell.english:startswith('Cura') or spell.name == 'Full Cure' then
 		-- Elemental Obi
-		if spell.element == world.weather_element then
+		equip(sets.midcast.CurePotency)
+		if spell.element == world.weather_element or spell.element == world.day_element then
 			equip(sets.obi[spell_element])
-			add_to_chat(158, '**Weather Obi Equipped**')
+			add_to_chat(158, '**Day/Weather Obi Equipped**')
 		end
-		if spell.element == world.day_element then
-			equip(sets.obi[spell_element])
-			add_to_chat(158, '**Day Obi Equipped**')
-		end
-	equip(sets.MidcastCurePotency)
-	add_to_chat(158, '**Cure Potency Gear Equipped**')
+		add_to_chat(158, '**Cure Potency Gear Equipped**')
 	end
 	-- Status Removal
-	
 	if spell.name == 'Poisona' or spell.name == 'Paralyna' or spell.name == 'Silena' or spell.name == 'Blindna' or spell.name == 'Stona' or spell.name == 'Viruna' or spell.name == 'Cursna' then
-		equip(sets.MidcastStatusNaSpells)
+		equip(sets.midcast.StatusNaSpells, sets.weapons[Mode_Set_Names[Mode_Index]])
 		add_to_chat(158, '**Status Gear Equipped**')
 	-- Divine Caress
 		if buffactive['Divine Caress'] and not spell.name == 'Cursna' then
-			equip(sets.MidcastDivineCaress)
+			equip(sets.midcast.DivineCaress, sets.weapons[Mode_Set_Names[Mode_Index]])
 			add_to_chat(158, '**Divine Caress Enhanced**')
 		end
 		if spell.name == 'Cursna' then
-				equip(sets.MidcastStatusCursna)
+				equip(sets.midcast.StatusCursna, sets.weapons[Mode_Set_Names[Mode_Index]])
 				add_to_chat(158, '**Cursna Enhanced**')
 		end
 	end
+	--Raise Timer Reduction
+	if spell.english:startswith('Raise') or spell.english:startswith('Reraise') or spell.name == 'Arise' then
+		equip((sets.midcast.recast), sets.weapons[Mode_Set_Names[Mode_Index]])
+		add_to_chat(158, '**Recast/MP Reduction**')
+	end
+	--EnhancingMagic
 	if spell.skill == 'Enhancing Magic' then
 		if spell.name == 'Erase' then
-		equip(sets.MidcastStatusNaSpells)
+		equip(sets.midcast.EraseSacrificeEsuna, sets.weapons[Mode_Set_Names[Mode_Index]])
 		add_to_chat(158, '**Status Gear Equipped**')
 		else
-		equip(sets.MidcastMaxEnhancing)
+		equip(sets.midcast.EnhancingDuration, sets.weapons[Mode_Set_Names[Mode_Index]])
 		add_to_chat(158, '**Enhancing Gear Equipped**')
 			if spell.name == 'Protectra V' then
 				equip({feet="Cleric's duckbills +2"})
@@ -515,14 +700,17 @@ function midcast(spell)
 				add_to_chat(158, '**Shellra V Enhanced**')
 			end
 			if spell.english:startswith('Bar') then
-				equip(sets.MidcastEnhancingBarspell)
+				equip(sets.midcast.EnhancingBarspell, sets.weapons[Mode_Set_Names[Mode_Index]])
 				add_to_chat(158, '**Barspell Gear Equipped**')
 			end
 			if spell.english:startswith('Regen') then	
+				equip(sets.midcast.EnhancingRegen, sets.weapons[Mode_Set_Names[Mode_Index]])
 				add_to_chat(158, '**Regen Enhanced**')
 			end
 		end
 	end
+	
+	
 	-- Sneak Spells
 	if spell.english == 'Sneak' and buffactive.sneak then
         send_command('@wait 1;cancel 71;')
@@ -535,13 +723,12 @@ end
 
 function aftercast(spell)
 	if player.status == 'Engaged' then
-        equip(sets.StandingTP)
+		equip(sets.idle.tp, sets.weapons[Mode_Set_Names[Mode_Index]])
 		add_to_chat(158, '**TP Gear Equipped**')
 	else
-	equip(sets.Standing)
+	equip(sets.idle, sets.weapons[Mode_Set_Names[Mode_Index]])
 	add_to_chat(158, '**Defense Gear Equipped**')
 	end
-	
 	-- Enfeebling Notification --
 	if spell.english == 'Sleep' or spell.english == 'Sleepga' then
         send_command('@wait 50;input /echo ------- '..spell.english..'  10 seconds -------')
@@ -550,16 +737,34 @@ function aftercast(spell)
 	elseif spell.english == 'Paralyze'  then
 		send_command('@wait 110;input /echo ------- '..spell.english..'  10 seconds -------')
     end
-	
 end
-
 function status_change(new,old)
 	if new == 'Resting' then
-		equip(sets.Resting)
+		equip(sets.resting, sets.weapons[Mode_Set_Names[Mode_Index]])
 	elseif new == 'Engaged' then
-		disable('main','sub')
-		equip(sets.StandingTP)
+		equip(sets.weapons[Mode_Set_Names[Mode_Index]])
+		equip(sets.tp)
 	else
-	equip(sets.Standing)
+	equip(sets.idle)
+	equip(sets.weapons[Mode_Set_Names[Mode_Index]])
+	end
+end
+function self_command(command)
+	if command == 'toggle Mode set' then
+		Mode_Index = Mode_Index +1
+		if Mode_Index > #Mode_Set_Names then Mode_Index = 1 end
+		send_command('@input /echo ----- Mode: ' ..Mode_Set_Names[Mode_Index]..' ------')
+		equip(sets.weapons[Mode_Set_Names[Mode_Index]])
+		display.mode = Mode_Set_Names[Mode_Index]
+	end
+	if command == 'toggle Armor set' then
+		Armor_Index = Armor_Index +1
+		if Armor_Index > #Armor_Set_Names then Armor_Index = 1 end
+		send_command('@input /echo ----- Armor Set is ' ..Armor_Set_Names[Armor_Index]..' ------')
+		if player.status == 'Engaged' then
+			equip(sets.TP[Armor_Set_Names[Armor_Index]])
+		else
+			equip(sets.standing[Armor_Set_Names[Armor_Index]])
+		end
 	end
 end

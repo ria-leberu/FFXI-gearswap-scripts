@@ -1,0 +1,17 @@
+sets.exported={
+    main={ name="Gabaxorea", augments={'MP+30','"Mag.Atk.Bns."+10','INT+7',}},
+    sub={ name="Gabaxorea", augments={'MP+30','"Mag.Atk.Bns."+10','INT+7',}},
+    ammo="Staunch Tathlum",
+    head="Orvail Corona +1",
+    body="Chelona Blazer",
+    hands="Aya. Manopolas +1",
+    legs="Nisse Slacks",
+    feet="Chelona Boots",
+    neck="Grandiose Chain",
+    waist="Qiqirn Sash +1",
+    left_ear="Brutal Earring",
+    right_ear="Ethereal Earring",
+    left_ring="Shneddick Ring",
+    right_ring="Defending Ring",
+    back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
+}

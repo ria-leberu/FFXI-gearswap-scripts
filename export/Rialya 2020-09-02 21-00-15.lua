@@ -1,0 +1,17 @@
+sets.exported={
+    main="Eminent Dagger",
+    sub="Thief's Knife",
+    ammo="Jukukik Feather",
+    head={ name="Herculean Helm", augments={'Accuracy+8 Attack+8','Weapon skill damage +5%','Accuracy+3',}},
+    body={ name="Qaaxo Harness", augments={'Attack+15','Evasion+15','"Dbl.Atk."+2',}},
+    hands={ name="Taeon Gloves", augments={'Accuracy+12','"Triple Atk."+2',}},
+    legs={ name="Taeon Tights", augments={'Accuracy+11','"Triple Atk."+2',}},
+    feet={ name="Taeon Boots", augments={'Attack+21','Crit.hit rate+3','Crit. hit damage +3%',}},
+    neck="Asperity Necklace",
+    waist="Snow Belt",
+    left_ear="Steelflash Earring",
+    right_ear="Bladeborn Earring",
+    left_ring="Rajas Ring",
+    right_ring="Ramuh Ring",
+    back="Atheling Mantle",
+}

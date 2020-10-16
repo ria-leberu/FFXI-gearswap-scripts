@@ -1,0 +1,17 @@
+sets.exported={
+    main="Iridal Staff",
+    sub="Amicus Grip",
+    ammo="Erlene's Notebook",
+    head={ name="Gende. Caubeen", augments={'Phys. dmg. taken -2%','"Cure" potency +2%',}},
+    body="Ebers Bliaud +1",
+    hands={ name="Telchine Gloves", augments={'"Cure" potency +7%',}},
+    legs="Orsn. Pantaln. +2",
+    feet="Skaoi Boots",
+    neck="Phrenic Torque",
+    waist="Pythia Sash",
+    left_ear="Mendi. Earring",
+    right_ear="Novia Earring",
+    left_ring="Mediator's Ring",
+    right_ring="Persis Ring",
+    back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+5','Enmity-10','Damage taken-5%',}},
+}

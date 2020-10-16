@@ -5,8 +5,56 @@ function get_sets()
 	--On Load settings
 	include('rialya-commonitems.lua')
 	windower.send_command('du blinking self always off; wait 8; input /lockstyleset 3; wait 1; du blinking self always on')
+	
+	--Binds Single Key Press to replace macros
+	--Single Number Key
+	windower.send_command('bind %1 input /ma "Cure III" <t>')
+	windower.send_command('bind %2 input /ma "Cure IV" <t>')
+	--windower.send_command('bind %3 input /ma "Cure V" <t>')
+	--windower.send_command('bind %4 input ')
+	windower.send_command('bind %5 input /ma "Haste" <t>')
+	--windower.send_command('bind %6 input ')
+	--windower.send_command('bind %7 input ')
+	--windower.send_command('bind %8 input ')
+	windower.send_command('bind %9 input /ja "Light Arts" <me>')
+	windower.send_command('bind %0 input /ja "Dark Arts" <me>')
+	
+	--CTRL + Number Key
+	windower.send_command('bind %^1 input /ma "Thunder V" <t>')
+	windower.send_command('bind %^2 input /ma "Blizzard V" <t>')
+	windower.send_command('bind %^3 input /ma "Thunder III" <t>')
+	windower.send_command('bind %^4 input /ma "Blizzard III" <t>')
+	--windower.send_command('bind %^5 input /ma "Curaga V" <t>')
+	windower.send_command('bind %^6 input /ja "Penury" <me>')
+	windower.send_command('bind %^7 input /ja "Accession" <me>')
+	windower.send_command('bind %^8 input /ja "Rapture" <me>')
+	--windower.send_command('bind %^9 input ')
+	--windower.send_command('bind %^0 input ')
+	
+	--ALT + Number Key
+	windower.send_command('bind %!1 input /ma "Sleep" <t>')
+	windower.send_command('bind %!2 input /ma "Sleep II" <t>')
+	windower.send_command('bind %!3 input /ma "Gravity" <t>')
+	windower.send_command('bind %!4 input /ma "Bind" <t>')
+	windower.send_command('bind %!5 input /ma "Break" <t>')
+	windower.send_command('bind %!6 input /ja "Celerity" <me>')
+	windower.send_command('bind %!7 input /ja "Perpetuance" <me>')
+	--windower.send_command('bind %!8 input ')
+	windower.send_command('bind %!9 input /ma "Aspir" <t>')
+	windower.send_command('bind %!0 input /ma "Drain" <t>')
+	
+	--Misc Keys
+	windower.send_command('bind %z input /ja "Sublimation" <me>')
+	--windower.send_command('bind %q input /ja "Divine Caress" <me>')
+	
+	
 	-- Elemental Accuracy Change}
 	Elemental_Index = 1
+	--Weapon
+	sets.weapons = {}
+	sets.weapons.dispelga = { 
+	main="Daybreak",
+	}
 	--Elemental Obis
 	sets.obi = {}
     sets.obi.Light = {waist='Korin Obi'}
@@ -17,50 +65,81 @@ function get_sets()
 	sets.obi.Fire = {waist='Karin Obi'}
 	sets.obi.Ice = {waist='Hyorin Obi'} 
 	sets.obi.Thunder = {waist='Rairin Obi'} 
-
 	sets.JA = {}
 	sets.JA.PenuryParsimony = {
 		legs="Arbatel pants",
 	}
-	
 	sets.JA.RaptureEbullience = {
 		head="Arbatel bonnet",
 	}
-	
 	sets.JA.PerpetuanceImmanence = {
 		hands="Arbatel bracers",
 	}
-	
 	sets.JA.TabulaRasa = {
 		legs="Pedagogy pants",
 	}
-	
-	sets.Magic = {}
-	
-	sets.Magic.STORMSURGE = {
+	sets.magic = {}
+	sets.magic.STORMSURGE = {
 		feet="Pedagogy loafers",
 	}
-	
-	sets.Magic.IMPACT = {
-		main="Marin Staff",
-		sub="Mephitis Grip",
-		range="Aureole",
-		body="Twilight Cloak",
-		hands={ name="Hagondes Cuffs", augments={'Phys. dmg. taken -2%','"Mag.Atk.Bns."+10',}},
-		legs={ name="Hagondes Pants +1", augments={'Phys. dmg. taken -1%','"Mag.Atk.Bns."+23',}},
-		feet="Arbatel Loafers",
-		neck="Imbodla Necklace",
-		waist="Aswang Sash",
-		left_ear="Barkaro. Earring",
-		right_ear="Gwati Earring",
-		left_ring="Shiva Ring",
-		right_ring="Shiva Ring",
-		back="Refraction Cape",
+	sets.magic.IMPACT = {
+		head="",
+		body="Twilight Cloak",	
 	}
-	
-	sets.Magic.KLIMAFORM = {
+	sets.magic.KLIMAFORM = {
 		feet="Arbatel loafers",
 	}
+	
+	-- Aftercast Sets
+	--Defense/Kiting/Recovery Set
+	sets.aftercast = {
+		main="Malignance Pole",
+		sub="Alber Strap",
+		ammo="Staunch Tathlum",
+		head="Befouled Crown",
+		body="Acad. Gown +1",
+		hands={ name="Hagondes Cuffs", augments={'Phys. dmg. taken -2%','"Mag.Atk.Bns."+10',}},
+		legs="Assid. Pants +1",
+		feet={ name="Helios Boots", augments={'"Mag.Atk.Bns."+24','Magic crit. hit rate +6','MP+9',}},
+		neck="Loricate Torque +1",
+		waist="Fucho-no-Obi",
+		left_ear="Odnowa Earring +1",
+		right_ear="Savant's Earring",
+		left_ring="Shneddick Ring",
+		right_ring="Defending Ring",
+		back="Umbra Cape",
+		}
+	-- Aftercast Sublimation
+	sets.standing = {}
+	sets.aftercast.sublimation = {
+		main="Earth staff", 
+		sub="Oneiros grip", 
+		head="Academic's Mortarboard", 
+		body="Pedagogy gown", 
+		neck="Loricate torque +1",  
+		ear2="Savant's earring", 
+		hands="Helios gloves", 
+		left_ring="Shneddick Ring",
+		right_ring={ name="Dark Ring", augments={'Phys. dmg. taken -3%','Magic dmg. taken -5%',}},
+		waist="Fucho-no-obi",
+		--back="", 
+		legs="Assiduity pants +1", 
+		feet={ name="Helios Boots", augments={'"Mag.Atk.Bns."+24','Magic crit. hit rate +6','MP+9',}},
+		}
+	sets.resting = { --Resting
+		main="Boonwell staff", 
+		sub="Oneiros grip", 
+		ammo="Clarus stone", 
+		head="Orvail Corona +1", 
+		neck="Grandiose chain", 
+		body="Chelona blazer", 
+		hands="Nares Cuffs", 
+		ring2="Angha ring", 
+		back="Vita cape", 
+		waist="Qiqirn sash +1",
+		legs="Nisse slacks", 
+		feet="Chelona boots"
+		}
 	
 	-- Precast Sets (Gear equipped prior to casting) Grimoire = 10% RDM SubJob = Fast Cast II = -15%
 	sets.precast = {
@@ -73,7 +152,6 @@ function get_sets()
 		legs="Artsieq Hose",				-- 5% Fast Cast
 		feet="Academic's loafers",			-- 5% Fast Cast
 	}
-	
 	sets.precast.AlacrityCelerity = {
 		ammo="Incantor stone",  			-- 2% Fast Cast
 		head={ name="Peda. M.Board", augments={'Enh. "Altruism" and "Focalization"',}},
@@ -84,10 +162,7 @@ function get_sets()
 		legs="Artsieq Hose",				-- 5% Fast Cast
 		feet="Pedagogy loafers",			-- 5% Fast Cast
 	}
-	
-	
 	sets.precast.OppositeSpellType = {
-	
 		ammo="Incantor stone",  			-- 2% Fast Cast
 		head="Nahtirah hat", 				-- -10% Fast Cast
 		ear1="Loquacious earring", 			-- 2% Fast Cast
@@ -96,83 +171,86 @@ function get_sets()
 		waist="Witful belt", 				-- 3% Fast Cast
 		legs="Artsieq Hose",				-- 5% Fast Cast
 		feet="Pedagogy loafers",			-- 5% Fast Cast
-	
 	}
 	-- Midcast Sets
 	--Elemental Magic
-	
 	sets.midcast = {}
-	
-	Elemental_Set_Names = {"Magic Potency", "Magic Accuracy"}
+	Elemental_Set_Names = {"Magic Potency", "Magic Accuracy", "60 Cap"}
 	sets.midcast.Elemental = {}
-	sets.midcast.Elemental.ICE = {
-		main="Keraunos", 
-		}
-	--Accuracy
-	sets.midcast.Elemental['Magic Accuracy']= {
-	
-		main="Akademos",
-		sub="Mephitis Grip",
-		range="Aureole",
-		head={ name="Peda. M.Board", augments={'Enh. "Altruism" and "Focalization"',}},
-		body="Acad. Gown +1",
-		hands={ name="Helios Gloves", augments={'Mag. Acc.+15 "Mag.Atk.Bns."+15','Magic crit. hit rate +5',}},
-		legs={ name="Hagondes Pants +1", augments={'Phys. dmg. taken -1%','"Mag.Atk.Bns."+23',}},
-		feet={ name="Helios Boots", augments={'"Mag.Atk.Bns."+24','Magic crit. hit rate +6','MP+9',}},
-		neck="Imbodla Necklace",
-		waist="Aswang Sash",
+	sets.midcast.Elemental['Magic Accuracy']= { --ElementalAccuracy
+		main={ name="Akademos", augments={'MP+80','INT+20','"Mag.Atk.Bns."+20',}},
+		sub="Tokko Grip",
+		ammo="Elis Tome",
+		head="Jhakri Coronal +2",
+		body="Jhakri Robe +2",
+		hands="Jhakri Cuffs +2",
+		legs="Jhakri Slops +1",
+		feet="Amalric nails +1",
+		neck="Eddy Necklace",
+		waist="Maniacus Sash",
 		left_ear="Barkaro. Earring",
-		right_ear="Gwati Earring",
+		right_ear="Friomisi Earring",
 		left_ring="Shiva Ring",
-		right_ring="Shiva Ring",
+		right_ring="Jhakri Ring",
 		back={ name="Bookworm's Cape", augments={'INT+2','MND+2','Helix eff. dur. +19','"Regen" potency+9',}},
-		
 		}
 	--Potency
 	sets.midcast.Elemental['Magic Potency'] = {
-	
-		main="Akademos", 
-		sub="Zuuxowu Grip", 
-		ammo="Erlene's notebook", 
-		head="Hagondes hat +1", 
-		neck="Eddy necklace", 
-		ear1="Barkarole earring",
-		ear2="Friomisi earring", 
-		body={ name="Hagondes Coat +1", augments={'Phys. dmg. taken -1%','"Mag.Atk.Bns."+16',}},
-		hands="Helios gloves", 
-		ring1="Shiva ring", 
-		ring2="Acumen Ring", 
-		back="Bookworm's cape", 
-		waist="Maniacus sash", 
-		legs={ name="Hagondes Pants +1", augments={'Phys. dmg. taken -1%','"Mag.Atk.Bns."+23',}}, 
-		feet={ name="Helios Boots", augments={'"Mag.Atk.Bns."+24','Magic crit. hit rate +6','MP+9',}},
-		
+		main={ name="Akademos", augments={'MP+80','INT+20','"Mag.Atk.Bns."+20',}},
+		sub="Tokko Grip",
+		ammo="Elis Tome",
+		head="Jhakri Coronal +2",
+		body="Jhakri Robe +2",
+		hands="Jhakri Cuffs +2",
+		legs="Amalric slops +1",
+		feet="Amalric nails +1",
+		neck="Eddy Necklace",
+		waist="Maniacus Sash",
+		left_ear="Barkaro. Earring",
+		right_ear="Friomisi Earring",
+		left_ring="Shiva Ring",
+		right_ring="Jhakri Ring",
+		back={ name="Bookworm's Cape", augments={'INT+2','MND+2','Helix eff. dur. +19','"Regen" potency+9',}},
+		}
+	--60 Cap
+		sets.midcast.Elemental['60 Cap'] = {
+		main="Iridal staff",
+		sub="Tokko Grip",
+		ammo="Elis Tome",
+		head="Jhakri Coronal +2",
+		body="Jhakri Robe +2",
+		hands="Jhakri Cuffs +2",
+		legs="Jhakri Slops +1",
+		feet="Amalric nails +1",
+		neck="Eddy Necklace",
+		waist="Maniacus Sash",
+		left_ear="Barkaro. Earring",
+		right_ear="Friomisi Earring",
+		left_ring="Shiva Ring",
+		right_ring="Jhakri Ring",
+		back={ name="Bookworm's Cape", augments={'INT+2','MND+2','Helix eff. dur. +19','"Regen" potency+9',}},
 		}
 --Helix
-
 	sets.midcast.Helix = {
-	
-		main="Akademos",
-		sub="Zuuxowu Grip",
-		ammo="Ghastly Tathlum",
-		head="Hagondes hat +1",
-		body={ name="Hagondes Coat +1", augments={'Phys. dmg. taken -1%','"Mag.Atk.Bns."+16',}},
-		hands={ name="Helios Gloves", augments={'Mag. Acc.+15 "Mag.Atk.Bns."+15','Magic crit. hit rate +5',}},
-		legs={ name="Hagondes Pants +1", augments={'Phys. dmg. taken -1%','"Mag.Atk.Bns."+23',}},
-		feet={ name="Helios Boots", augments={'"Mag.Atk.Bns."+24','Magic crit. hit rate +6','MP+9',}},
+		main={ name="Akademos", augments={'MP+80','INT+20','"Mag.Atk.Bns."+20',}},
+		sub="Tokko Grip",
+		ammo="Elis Tome",
+		head="Jhakri Coronal +2",
+		body="Jhakri Robe +2",
+		hands="Jhakri Cuffs +2",
+		legs="Jhakri Slops +1",
+		feet="Amalric nails +1",
 		neck="Eddy Necklace",
-		waist="Aswang Sash",
-		left_ear="Barkarole earring",
-		ear2="Friomisi earring", 
+		waist="Maniacus Sash",
+		left_ear="Barkaro. Earring",
+		right_ear="Friomisi Earring",
 		left_ring="Shiva Ring",
-		right_ring="Shiva Ring",
+		right_ring="Jhakri Ring",
 		back={ name="Bookworm's Cape", augments={'INT+2','MND+2','Helix eff. dur. +19','"Regen" potency+9',}},
-		
 		}
 --Healing Magic 
 	--Cure Potency
 	sets.midcast.CurePOT = {
-	
 		main="Arka iv",		-- 24% Cure Potency
 		sub="Amicus grip", 				-- -3 Enmity
 		ammo="Clarus stone", 			-- ConserveMP+3
@@ -188,12 +266,10 @@ function get_sets()
 		waist="Pythia sash", 			-- -4 Enmity, MND+5, ConserveMP+4
 		legs="Academic's pants +1", 	-- -4 Enmity, MND+29, Light Arts +20
 		feet="Orvail souliers +1",		-- -5 Enmity, MND+18
-		
 		}
 --Status Removal
 --Enhancing Magic
 	sets.midcast.Enhancing = {
-	
 		main="Earth staff", 
 		sub="Fulcio Grip", 
 		ammo="Savant's treatise", 
@@ -209,11 +285,9 @@ function get_sets()
 		waist="Olympus sash", 
 		legs="Academic's pants +1", 
 		feet="Orvail souliers +1",
-		
 		}
 --Regen
 	sets.midcast.REGEN = {
-	
 		main="Bolelabunga", 
 		ammo="Savant's treatise", 
 		head="Arbatel bonnet", 
@@ -228,13 +302,10 @@ function get_sets()
 		waist="Witful belt", 
 		legs="Academic's pants +1", 
 		feet="Orvail souliers +1",
-		
 		}
 --Barspell
 --Enfeebling Magic
-
 	sets.midcast.Enfeebling = {
-		
 		main="Marin staff", 
 		sub="Mephitis grip", 
 		range="Aureole", 
@@ -250,11 +321,8 @@ function get_sets()
 		waist="Demonry sash", 
 		legs="Psycloth lappas", 
 		feet="Orvail souliers +1",
-		
 		}
-		
 	sets.midcast.Enfeebling.WhiteACC = {
-		
 		main="Marin Staff",
 		sub="Mephitis Grip",
 		range="Aureole",
@@ -269,11 +337,9 @@ function get_sets()
 		left_ring="Mediator's Ring",
 		right_ring="Sangoma Ring",
 		back="Refraction Cape",
-		
 		}
 	--Black Magic Accuracy
 	sets.midcast.Enfeebling.BlackACC = {
-	
 		main="Marin staff", 
 		sub="Mephitis grip", 
 		range="Aureole", 
@@ -306,11 +372,7 @@ function get_sets()
 		legs="Psycloth lappas", 
 		feet={ name="Helios Boots", augments={'"Mag.Atk.Bns."+24','Magic crit. hit rate +6','MP+9',}},
 		}
-	--Black Magic Potency
-	--Dark Magic
-	--Accuracy
 	sets.midcast.Dark = {
-		
 		main="Marin staff", 
 		sub="Mephitis grip", 
 		ammo="Savant's treatise", 
@@ -326,11 +388,8 @@ function get_sets()
 		waist="Aswang sash", 
 		legs="Psycloth lappas", 
 		feet="Uk'uxkaj boots",
-		
 		}
-			
 	sets.midcast.Dark.Stun = {
-		
 		main="Marin staff", 
 		sub="Mephitis grip", 
 		ammo="Savant's treatise", 
@@ -346,11 +405,8 @@ function get_sets()
 		waist="Aswang sash", 
 		legs="Psycloth lappas", 
 		feet="Uk'uxkaj boots",
-		
 		}
-			
 	sets.midcast.Dark.DrainAspir = {
-		
 		main="Marin staff", 
 		sub="Mephitis grip", 
 		ammo="Ombre tathlum", 
@@ -366,91 +422,37 @@ function get_sets()
 		waist="Fucho-no-obi", 
 		legs="Psycloth lappas", 
 		feet="Orvail souliers +1",
-		
-		}
-			
--- Aftercast Sets
-	--Defense/Kiting/Recovery Set
-	sets.aftercast = {
-		
-		main="Earth Staff",
-		sub="Oneiros Grip",
-		ammo="Clarus Stone",
-		body="Respite Cloak",
-		hands={ name="Helios Gloves", augments={'Mag. Acc.+15 "Mag.Atk.Bns."+15','Magic crit. hit rate +5',}},
-		legs="Assiduity pants +1",
-		feet={ name="Helios Boots", augments={'"Mag.Atk.Bns."+24','Magic crit. hit rate +6','MP+9',}},
-		neck="Twilight Torque",
-		waist="Fucho-no-Obi",
-		left_ear="Ethereal earring",
-		right_ear="Savant's Earring",
-		left_ring="Shneddick Ring",
-		right_ring={ name="Dark Ring", augments={'Phys. dmg. taken -3%','Magic dmg. taken -5%',}},
-		back="Cheviot Cape",
-		
-		}
-
-	sets.aftercast.ItemLevel = {
-	
-		main="Earth Staff",
-		sub="Oneiros Grip",
-		ammo="Clarus Stone",
-		body="Respite Cloak",
-		hands={ name="Helios Gloves", augments={'Mag. Acc.+15 "Mag.Atk.Bns."+15','Magic crit. hit rate +5',}},
-		legs="Assiduity pants +1",
-		feet={ name="Helios Boots", augments={'"Mag.Atk.Bns."+24','Magic crit. hit rate +6','MP+9',}},
-		neck="Twilight Torque",
-		waist="Fucho-no-Obi",
-		right_ear="Savant's Earring",
-		left_ring="Shneddick Ring",
-		right_ring={ name="Dark Ring", augments={'Phys. dmg. taken -3%','Magic dmg. taken -5%',}},
-		back="Cheviot Cape",
-	
-	}
-	
-	-- Aftercast Sublimation
-	sets.standing = {}
-		
-	sets.aftercast.sublimation = {
-		
-		main="Earth staff", 
-		sub="Oneiros grip", 
-		head="Academic's Mortarboard", 
-		body="Pedagogy gown", 
-		neck="Twilight torque",  
-		ear2="Savant's earring", 
-		hands="Helios gloves", 
-		left_ring="Shneddick Ring",
-		right_ring={ name="Dark Ring", augments={'Phys. dmg. taken -3%','Magic dmg. taken -5%',}},
-		waist="Fucho-no-obi",
-		back="Cheviot cape", 
-		legs="Assiduity pants +1", 
-		feet={ name="Helios Boots", augments={'"Mag.Atk.Bns."+24','Magic crit. hit rate +6','MP+9',}},
-		
-		}
-		--Resting
-	sets.resting = {
-		
-		main="Boonwell staff", 
-		sub="Oneiros grip", 
-		ammo="Clarus stone", 
-		head="Orvail Corona +1", 
-		neck="Grandiose chain", 
-		body="Chelona blazer", 
-		hands="Nares Cuffs", 
-		ring2="Angha ring", 
-		back="Vita cape", 
-		waist="Qiqirn sash +1",
-		legs="Nisse slacks", 
-		feet="Chelona boots"
-		
 		}
 
 end
-
--- Events (Casting)
-
-function filtered_action(spell)
+function filtered_action(spell) -- Events (Casting)
+	
+	if buffactive['Dark Arts'] or buffactive['Addendum: Black'] then
+		if spell.name == 'Penury' then 
+			cancel_spell()
+			send_command('input /ja "Parsimony" <me>')
+		end
+		if spell.name == 'Celerity' then
+			cancel_spell()
+			send_command('input /ja "Alacrity" <me>')
+		end
+		if spell.name == 'Accession' then
+			cancel_spell()
+			send_command('input /ja "Manifestation" <me>')
+		end
+		if spell.name == 'Rapture' then
+			cancel_spell()
+			send_command('input /ja "Ebullience" <me>')
+		end
+		if spell.name == 'Perpetuance' then
+			cancel_spell()
+			send_command('input /ja "Immanence" <me>')
+		end
+	end
+--Dispelga
+	if spell.name == 'Dispelga' then
+		equip(sets.weapons.dispelga)
+	end
 --Replaces spells and actions for either single target variants or related debuff on mobs	
 	if spell.name == 'Barstonra' then
 		cancel_spell()
@@ -471,6 +473,7 @@ function filtered_action(spell)
 		cancel_spell()
 		send_command('input /ma "Barthunder" <me>')
 	end
+	
 	if spell.target.type == 'MONSTER' then
 		--add_to_chat(140, '**MONSTER check**')
 		--Paralyze
@@ -488,7 +491,6 @@ function filtered_action(spell)
 			cancel_spell()
 			send_command('input /ma "Silence" <t>')
 		end
-		
 		if spell.name == 'Blindna' then
 			cancel_spell()
 			send_command('input /ma "Blind" <t>')
@@ -497,11 +499,24 @@ function filtered_action(spell)
 			cancel_spell()
 			send_command('input /ma "Break" <t>')
 		end
+		if spell.name == 'Poisona' then
+			cancel_spell()
+			send_command('input /ma "Poison II" <t>')
+		end
 	end	
+	
+	
+		
 end
-
 function pretarget(spell)
 -- Light Arts and Dark Arts ChangeSpell
+	if spell.name == 'Hailstorm II' and player.main_job_level == 60 then
+		cancel_spell()
+		send_command('input /ma "Hailstorm" <t>')
+	elseif spell.name == 'Windstorm II' and  player.main_job_level == 60 then
+		cancel_spell()
+		send_command('input /ma "Windstorm" <t>')
+	end
 	if spell.name == 'Light Arts' and buffactive['Light Arts'] then
 		cancel_spell()
 		send_command('input /ja "Addendum: White" <me>')
@@ -509,6 +524,7 @@ function pretarget(spell)
 		cancel_spell()
 		send_command('input /ja "Addendum: Black" <me>')
 	end
+	
 	-- Light Arts Strategem Spam (If one strategem is active as buff, an alternate one is used)
 	if spell.name == 'Accession' and buffactive['Accession'] then
 	cancel_spell()
@@ -558,9 +574,7 @@ function pretarget(spell)
 		end
 	end
 end
-
 function precast(spell)
-
 	if spell.type == 'WhiteMagic' then
 		if buffactive.celerity and spell.element == world.weather_element then
 			equip(sets.precast.AlacrityCelerity)
@@ -574,9 +588,13 @@ function precast(spell)
 		end
 	elseif spell.type == 'BlackMagic' then
 		if spell.name == 'Impact' then
-			equip(sets.Magic.IMPACT)
+			equip(sets.precast, sets.magic.IMPACT)
+			add_to_chat(158, '**Precast IMPACT Gear Equipped**')
 		end
-		
+		if spell.name == 'Dispelga' then
+			equip(sets.precast, sets.weapons.dispelga)
+			add_to_chat(158, '**Precast Gear Equipped**')
+		end
 		if buffactive.alacrity and spell.element == world.weather_element and not (spell.skill == 'ElementalMagic' and spell.casttime <3 and buffactive.Klimaform) then
 			if spell.name == 'Gravity' then
 				equip(sets.midcast.enfeebling)
@@ -597,12 +615,11 @@ function precast(spell)
 		add_to_chat(158, '**Tabula Rasa Enhanced**')
 	end
 end
-
-function midcast(spell)
-	
+function midcast(spell)	
 	if spell.skill == 'Elemental Magic' then
 		if spell.name == 'Impact' then
-			equip(sets.Magic.IMPACT)
+			equip(sets.midcast.Elemental['Magic Accuracy'], sets.magic.IMPACT)
+			add_to_chat(158, '**Impact Gear Equipped**')
 		elseif string.find(spell.english,'helix') then
 			equip (sets.midcast.Helix)
 			add_to_chat(158, '**Helix Damage Gear Equipped**')
@@ -634,8 +651,6 @@ function midcast(spell)
 					add_to_chat(158, '**Fire Day/Weather Obi Equipped**')
 					end
 				elseif spell.element == 'Ice' then
-					equip(sets.midcast.Elemental.ICE)
-					add_to_chat(158, '**Ice DMG Staff Equipped**')
 					if world.day_element == 'Ice' or  world.weather_element == 'Ice' then
 					equip({waist="Hyorin Obi"})
 					add_to_chat(158, '**Ice Day/Weather Obi Equipped**')
@@ -646,7 +661,7 @@ function midcast(spell)
 					add_to_chat(158, '**Lightning Day/Weather Obi Equipped**')
 					end
 				elseif spell.name == 'Impact' then
-				equip (sets.Magic.IMPACT)
+				equip (sets.magic.IMPACT)
 				
 				end
 				if buffactive['Klimaform'] and spell.element == world.weather_element then
@@ -659,8 +674,13 @@ function midcast(spell)
 			equip(sets.midcast.Enfeebling.WhiteACC)
 			add_to_chat(158, '**White Enfeebling Gear Equipped**')
 		elseif spell.type == 'BlackMagic' then
+			if spell.name == 'Dispelga' then
+			equip(sets.midcast.Enfeebling, sets.weapons.dispelga)
+			add_to_chat(158, '**Daybreak Gear Equipped**')
+			else
 			equip(sets.midcast.Enfeebling.BlackACC)
 			add_to_chat(158, '**Black Enfeebling Gear Equipped**')
+			end
 		end
 	end
 	if spell.skill == 'Dark Magic' then
@@ -672,7 +692,7 @@ function midcast(spell)
 			add_to_chat(158, '** Stun Gear Equipped**')
 		else
 			equip(sets.midcast.Dark)
-			add_to_chat(158, '** Dark Magic Gear Equipped**')
+			add_to_chat(158, '** Dark magic Gear Equipped**')
 		end
 	end
 	if spell.english:startswith('Cure') or spell.english:startswith('Cura') then
@@ -687,7 +707,7 @@ function midcast(spell)
 			equip(sets.midcast.Enhancing)
 			add_to_chat(158, '**Enhancing Gear Equipped**')
 				if string.find(spell.english,'storm') then
-					equip(sets.Magic.STORMSURGE)
+					equip(sets.magic.STORMSURGE)
 					add_to_chat(158, '**Storm Spells Enhanced**')
 				end
 		end
@@ -745,7 +765,6 @@ function status_change(new,old)
 	equip(sets.aftercast)
 	end
 end
-
 function self_command(command)
 	if command == 'toggle Elemental set' then
 		Elemental_Index = Elemental_Index +1
@@ -754,4 +773,3 @@ function self_command(command)
 		equip(sets.midcast.Elemental[Elemental_Set_Names[Elemental_Index]])
 	end
 end
- 

@@ -1,0 +1,17 @@
+sets.exported={
+    main="Tanmogayi +1",
+    sub={ name="Claidheamh Soluis", augments={'Accuracy+6','"Dbl.Atk."+2','DMG:+9',}},
+    ammo="Amar Cluster",
+    head="Aya. Zucchetto +1",
+    body="Ayanmo Corazza +2",
+    hands={ name="Taeon Gloves", augments={'Accuracy+12','"Triple Atk."+2',}},
+    legs={ name="Taeon Tights", augments={'Accuracy+11','"Triple Atk."+2',}},
+    feet="Aya. Gambieras +1",
+    neck="Asperity Necklace",
+    waist="Cetl Belt",
+    left_ear="Brutal Earring",
+    right_ear="Suppanomimi",
+    left_ring="Ayanmo Ring",
+    right_ring="Rajas Ring",
+    back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','Crit.hit rate+10','Damage taken-5%',}},
+}
