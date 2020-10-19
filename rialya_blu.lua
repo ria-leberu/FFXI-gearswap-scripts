@@ -86,11 +86,11 @@ function get_sets()
 	Haste_Set_Names = {"No Haste", "15%", "30%", "35%", "MAX"}
 	
 	sets.weapons = {}
-	sets.weapons['Physical'] = { --Physical Damage Weapon Set
+	sets.weapons['Physical'] = { --Physical Damage Weapon Set -- Assumes DW5 (35%)
 		main="Tizona",
 		sub="Machaera +2",
 	}
-	sets.weapons['Magic'] = { -- Magic Damage Weapon Set
+	sets.weapons['Magic'] = { -- Magic Damage Weapon Set -- Assumes DW3 (25%)
 		main="Gabaxorea",
 		sub="Gabaxorea",
 	}
@@ -152,7 +152,7 @@ function get_sets()
 		right_ear="Suppanomimi", --DW+5
 		left_ring="Ayanmo Ring", --Acc+6, DT-3
 		right_ring="Rajas Ring", --STR+5, DEX+5, StoreTP+5
-		--back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','Crit.hit rate+10','Damage taken-5%',}},
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','Crit.hit rate+10','Damage taken-5%',}},
 	})
 	
 	sets.tp['Accuracy'] = {
@@ -168,7 +168,7 @@ function get_sets()
 		right_ear="Suppanomimi", --DW+5
 		left_ring="Ayanmo Ring",
 		right_ring="Mars's Ring",
-		--back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','Crit.hit rate+10','Damage taken-5%',}},
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','Crit.hit rate+10','Damage taken-5%',}},
 	}
 	sets.tp['PDT'] = {
 		ammo="Honed Tathlum",
@@ -183,7 +183,7 @@ function get_sets()
 		right_ear="Suppanomimi",
 		left_ring="Ayanmo Ring",
 		right_ring="Defending ring",
-		--back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','Crit.hit rate+10','Damage taken-5%',}},
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','Crit.hit rate+10','Damage taken-5%',}},
 	}
 	sets.tp['MDT'] = {
 		ammo="Honed Tathlum",
@@ -198,7 +198,7 @@ function get_sets()
 		right_ear="Suppanomimi",
 		left_ring="Ayanmo Ring",
 		right_ring="Defending ring",
-		--back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','Crit.hit rate+10','Damage taken-5%',}},
+		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','Crit.hit rate+10','Damage taken-5%',}},
 	}
 	sets.tp.haste = {}
 	
@@ -221,7 +221,7 @@ function get_sets()
 		feet="Malignance boots",
 		neck="Asperity Necklace",
 		waist="Sailfi belt +1",
-		--left_ear="Brutal Earring",
+		left_ear="Brutal Earring",
 		--right_ear="Suppanomimi",
 		left_ring="Ayanmo Ring",
 		right_ring="Rajas Ring",
@@ -288,7 +288,7 @@ function get_sets()
 		legs="Amalric slops +1",
 		feet="Amalric nails +1",
 		neck="Eddy Necklace",
-		waist="Eschan stone",
+		waist="Orpheus's sash",
 		left_ear="Friomisi earring",
 		right_ear="Novio Earring",
 		left_ring="Acumen Ring", --acumen ring
@@ -752,9 +752,21 @@ end
 
 function aftercast(spell)
 	if player.status == 'Engaged' then
-		equip(sets.weapons[Weapon_Set_Names[Weapon_Index]])
-		equip(sets.tp[Armor_Set_Names[Armor_Index]])
-		add_to_chat(158, '**TP ' ..Armor_Set_Names[Armor_Index]..' Equipped**')
+		if player.equipment.main == 'Tizona' then
+			if buffactive['Aftermath: Lv.3'] then
+				equip(sets.weapons[Weapon_Set_Names[Weapon_Index]])
+				equip(sets.tp[Armor_Set_Names[Armor_Index]], sets.tp[Haste_Set_Names[Haste_Index]], sets.tp.AM)
+				add_to_chat(158, '**AM3 TP [' ..Armor_Set_Names[Armor_Index]..'] Haste['..Haste_Set_Names[Haste_Index].. '] Equipped**')
+			else
+				equip(sets.weapons[Weapon_Set_Names[Weapon_Index]])
+				equip(sets.tp[Armor_Set_Names[Armor_Index]])
+				--add_to_chat(158, '**No-AM3 TP [' ..Armor_Set_Names[Armor_Index]..'] Haste['..Haste_Set_Names[Haste_Index].. '] Equipped**')
+			end
+		else
+			equip(sets.weapons[Weapon_Set_Names[Weapon_Index]])
+			equip(sets.tp[Armor_Set_Names[Armor_Index]])
+			add_to_chat(158, '**Magic Weapon TP [' ..Armor_Set_Names[Armor_Index]..'] Haste['..Haste_Set_Names[Haste_Index].. '] Equipped**')
+		end
     else
 		equip(sets.weapons[Weapon_Set_Names[Weapon_Index]])
         equip(sets.aftercast)
@@ -764,6 +776,15 @@ end
 
 function buff_change(name,gain,buff_details)
     check_haste()
+	if player.status == 'Engaged' then
+		if player.equipment.main == 'Tizona' then
+			if buffactive['Aftermath: Lv.3'] then
+				equip(sets.weapons[Weapon_Set_Names[Weapon_Index]])
+				equip(sets.tp[Armor_Set_Names[Armor_Index]], sets.tp[Haste_Set_Names[Haste_Index]], sets.tp.AM)
+				add_to_chat(158, '**AM3 TP [' ..Armor_Set_Names[Armor_Index]..'] Haste['..Haste_Set_Names[Haste_Index].. '] Equipped**')
+			end
+		end
+    end
 end
 
 function buff_refresh(name, buffdetails)
@@ -800,14 +821,14 @@ function status_change(new,old)
 				equip(sets.tp[Armor_Set_Names[Armor_Index]], sets.tp[Haste_Set_Names[Haste_Index]], sets.tp.AM)
 				add_to_chat(158, '**AM3 TP [' ..Armor_Set_Names[Armor_Index]..'] Haste['..Haste_Set_Names[Haste_Index].. '] Equipped**')
 			else
-			equip(sets.weapons[Weapon_Set_Names[Weapon_Index]])
-			equip(sets.tp[Armor_Set_Names[Armor_Index]])
-			add_to_chat(158, '**No-AM3 TP [' ..Armor_Set_Names[Armor_Index]..'] Haste['..Haste_Set_Names[Haste_Index].. '] Equipped**')
+				equip(sets.weapons[Weapon_Set_Names[Weapon_Index]])
+				equip(sets.tp[Armor_Set_Names[Armor_Index]])
+				add_to_chat(158, '**No-AM3 TP [' ..Armor_Set_Names[Armor_Index]..'] Haste['..Haste_Set_Names[Haste_Index].. '] Equipped**')
 			end
 		else
-		equip(sets.weapons[Weapon_Set_Names[Weapon_Index]])
-        equip(sets.tp[Armor_Set_Names[Armor_Index]])
-		add_to_chat(158, '**Magic Weapon TP [' ..Armor_Set_Names[Armor_Index]..'] Haste['..Haste_Set_Names[Haste_Index].. '] Equipped**')
+			equip(sets.weapons[Weapon_Set_Names[Weapon_Index]])
+			equip(sets.tp[Armor_Set_Names[Armor_Index]])
+			add_to_chat(158, '**Magic Weapon TP [' ..Armor_Set_Names[Armor_Index]..'] Haste['..Haste_Set_Names[Haste_Index].. '] Equipped**')
 		end
 	elseif new == 'Resting' then
 		equip(sets.resting)
