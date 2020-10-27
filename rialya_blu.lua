@@ -28,7 +28,7 @@ function get_sets()
 	--Startup settings
 	include('rialya-commonitems.lua') --adds commonly used items for Organizer addon to pull into inventory
 	--include('Mote-Include.lua')
-	windower.send_command('du blinking self always off; wait 8; input /lockstyleset 2; wait 1; du blinking self always on; ') --adjust dressup settings and style lock 
+	windower.send_command('du blinking self always off; wait 2; input /lockstyleset 2') --adjust dressup settings and style lock 
 	windower.send_command('bind f9 gs c toggle Weapon set')	--sets F9 to toggle Weapon set
 	windower.send_command('bind f10 gs c toggle Armor set')	--sets F10 to toggle Armor set
 	

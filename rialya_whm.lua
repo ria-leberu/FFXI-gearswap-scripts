@@ -91,24 +91,24 @@ function get_sets()
 	sets.weapons.dispelga = {
 		main="Daybreak",
 	}
-	sets.idle = { --[[Idle Gear: Refresh, DamageTakenDown, MagicDamageTakenDown, PhysicalDamageTakenDown, M.EvasionUp, EvasionUp]]--
-		main="Malignance pole",
-		sub="Irenic Strap",
+	sets.aftercast = { --[[aftercast Gear: Refresh, DamageTakenDown, MagicDamageTakenDown, PhysicalDamageTakenDown, M.EvasionUp, EvasionUp]]--
+		main="Malignance Pole",
+		sub="Enki Strap",
 		ammo="Staunch Tathlum",
-		head="Befouled Crown",
-		body="Ebers Bliaud +1",
-		hands="Ayanmo manopolas +1",
-		legs="Assid. Pants +1",
-		feet="Ayanmo gambieras +1",
-		neck="Loricate torque +1",
+		head="Inyanga Tiara +1",
+		body="Inyanga Jubbah +1",
+		hands="Inyan. Dastanas +1",
+		legs="Inyanga Shalwar +1",
+		feet="Inyan. Crackows +1",
+		neck="Loricate Torque +1",
 		waist="Fucho-no-Obi",
 		left_ear="Odnowa Earring +1",
 		right_ear="Novia Earring",
 		left_ring="Defending Ring",
 		right_ring="Shneddick Ring",
-		back="Alaunus's cape",
+		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+5','Enmity-10','Damage taken-5%',}},
 	}
-	sets.idle.tp = { --[[Gear (Melee): Refresh, DamageTakenDown, MagicDamageTakenDown, PhysicalDamageTakenDown, M.EvasionUp, EvasionUp]]--
+	sets.aftercast.tp = { --[[Gear (Melee): Refresh, DamageTakenDown, MagicDamageTakenDown, PhysicalDamageTakenDown, M.EvasionUp, EvasionUp]]--
 		head="Theophany cap", 
 		body="Theophany briault", 
 		neck="Asperity necklace", 
@@ -391,39 +391,32 @@ function get_sets()
 	}
 --Barspell
 	sets.midcast.EnhancingBarspell = { --At leastr 500 enhancing, Resistance+, Duration+
-		main="Ababinili", 
-		sub="Fulcio Grip", 
-		ammo="Clarus stone", 
-		head="Ebers Cap", 
-		neck="Colossus's torque", 
-		ear1="Lifestorm earring", 
-		ear2="Novia earring", 
-		body="Ebers Bliaud +1", 
-		hands="Dynasty Mitts", 
-		ring1="Mediator's ring", 
-		ring2="Ephedra ring", 
-		back="Mending cape", 
-		waist="Witful belt", 
-		legs="Piety pantaloons", 
-		feet="Orison duckbills +2",
-	}
---Enhancing Duration
-	sets.midcast.EnhancingDuration = {
-		main="Yagrush",
-		sub="Ammurapi Shield",
+		main="Ababinili",
+		sub="Fulcio Grip",
 		ammo="Clarus Stone",
-		head="Befouled Crown",
-		body={ name="Telchine Chas.", augments={'"Cure" potency +7%',}},
+		head="Ebers Cap",
+		body="Ebers Bliaud +1",
 		hands="Dynasty Mitts",
 		legs={ name="Piety Pantaloons", augments={'Enhances "Afflatus Misery" effect',}},
 		feet="Orsn. Duckbills +2",
 		neck="Colossus's Torque",
-		waist="Embla Sash",
-		left_ear="Lifestorm Earring",
+		waist="Witful Belt",
+		left_ear="Mimir Earring",
 		right_ear="Novia Earring",
 		left_ring="Mediator's Ring",
 		right_ring="Ephedra Ring",
 		back="Mending Cape",
+	}
+--Enhancing Duration
+	sets.midcast.EnhancingDuration = { --increase duration of Enhancing Magic spells without other potency modifiers
+		main="Yagrush",
+		sub="Ammurapi Shield",
+		head={ name="Telchine Cap", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +9',}},
+		body={ name="Telchine Chas.", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +10',}},
+		hands={ name="Telchine Gloves", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +10',}},
+		legs={ name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +10',}},
+		feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},
+		waist="Embla Sash",
 	}
 --Enfeebling Magic
 	sets.midcast.Enfeebling = {
@@ -723,10 +716,10 @@ end
 
 function aftercast(spell)
 	if player.status == 'Engaged' then
-		equip(sets.idle.tp, sets.weapons[Mode_Set_Names[Mode_Index]])
+		equip(sets.aftercast.tp, sets.weapons[Mode_Set_Names[Mode_Index]])
 		add_to_chat(158, '**TP Gear Equipped**')
 	else
-	equip(sets.idle, sets.weapons[Mode_Set_Names[Mode_Index]])
+	equip(sets.aftercast, sets.weapons[Mode_Set_Names[Mode_Index]])
 	add_to_chat(158, '**Defense Gear Equipped**')
 	end
 	-- Enfeebling Notification --
@@ -745,7 +738,7 @@ function status_change(new,old)
 		equip(sets.weapons[Mode_Set_Names[Mode_Index]])
 		equip(sets.tp)
 	else
-	equip(sets.idle)
+	equip(sets.aftercast)
 	equip(sets.weapons[Mode_Set_Names[Mode_Index]])
 	end
 end

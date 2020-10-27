@@ -1,0 +1,17 @@
+sets.exported={
+    main="Malignance Pole",
+    sub="Fulcio Grip",
+    ammo="Savant's Treatise",
+    head={ name="Telchine Cap", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +9',}},
+    body={ name="Telchine Chas.", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +10',}},
+    hands={ name="Telchine Gloves", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +10',}},
+    legs={ name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +10',}},
+    feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},
+    neck="Colossus's Torque",
+    waist="Embla Sash",
+    left_ear="Lifestorm Earring",
+    right_ear="Andoaa Earring",
+    left_ring="Mediator's Ring",
+    right_ring="Ephedra Ring",
+    back="Oretania's Cape",
+}

@@ -286,6 +286,23 @@ function get_sets()
 		legs="Academic's pants +1", 
 		feet="Orvail souliers +1",
 		}
+	sets.midcast.EnhancingDuration = {
+		main="Malignance Pole",
+		sub="Fulcio Grip",
+		ammo="Savant's Treatise",
+		head={ name="Telchine Cap", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +9',}},
+		body={ name="Telchine Chas.", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +10',}},
+		hands={ name="Telchine Gloves", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +10',}},
+		legs={ name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +10',}},
+		feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},
+		neck="Colossus's Torque",
+		waist="Embla Sash",
+		left_ear="Lifestorm Earring",
+		right_ear="Andoaa Earring",
+		left_ring="Mediator's Ring",
+		right_ring="Ephedra Ring",
+		back="Oretania's Cape",
+		}
 --Regen
 	sets.midcast.REGEN = {
 		main="Bolelabunga", 
@@ -703,6 +720,28 @@ function midcast(spell)
 		if spell.english:startswith('Regen') then
 			equip(sets.midcast.REGEN)
 			add_to_chat(158, '**Regen Enhanced**')
+		elseif spell.name == 'Haste' 
+		or 'Flurry' 
+		or 'Sneak' 
+		or 'Invisible' 
+		or 'Refresh' 
+		or 'Sandstorm' 
+		or 'Sandstorm II' 
+		or 'Rainstorm' 
+		or 'Rainstorm II' 
+		or 'Windstorm' 
+		or 'Windstorm II'
+		or 'Firestorm' 
+		or 'Firestorm II' 
+		or 'Hailstorm' 
+		or 'Hailstorm II' 
+		or 'Aurorastorm' 
+		or 'Aurorastorm II'
+		or 'Animus Augeo' 
+		or 'Animus Minuo' 
+		or 'Adloquium' then
+			equip(sets.midcast.EnhancingDuration)
+			add_to_chat(158, '**Duration Enhanced**')	
 		else
 			equip(sets.midcast.Enhancing)
 			add_to_chat(158, '**Enhancing Gear Equipped**')

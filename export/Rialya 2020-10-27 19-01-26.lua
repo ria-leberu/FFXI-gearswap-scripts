@@ -1,0 +1,17 @@
+sets.exported={
+    main="Ababinili",
+    sub="Fulcio Grip",
+    ammo="Clarus Stone",
+    head="Ebers Cap",
+    body="Ebers Bliaud +1",
+    hands="Dynasty Mitts",
+    legs={ name="Piety Pantaloons", augments={'Enhances "Afflatus Misery" effect',}},
+    feet="Orsn. Duckbills +2",
+    neck="Colossus's Torque",
+    waist="Witful Belt",
+    left_ear="Mimir Earring",
+    right_ear="Novia Earring",
+    left_ring="Mediator's Ring",
+    right_ring="Ephedra Ring",
+    back="Mending Cape",
+}

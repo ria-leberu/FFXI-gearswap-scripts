@@ -1,0 +1,15 @@
+sets.exported={
+    main={ name="Aettir", augments={'Accuracy+70','Mag. Evasion+50','Weapon skill damage +10%',}},
+    head="Aya. Zucchetto",
+    body="Ayanmo Corazza",
+    hands="Aya. Manopolas",
+    legs="Carmine Cuisses +1",
+    feet="Aya. Gambieras",
+    neck="Peacock Charm",
+    waist="Cetl Belt",
+    left_ear="Allegro Earring",
+    right_ear="Thunder Earring",
+    left_ring="Enlivened Ring",
+    right_ring="Rajas Ring",
+    back="Aife's Mantle",
+}
