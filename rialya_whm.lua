@@ -43,7 +43,7 @@ function get_sets()
 	--windower.send_command('bind %6 input ')
 	--windower.send_command('bind %7 input ')
 	--windower.send_command('bind %8 input ')
-	--windower.send_command('bind %9 input ')
+	windower.send_command('bind %9 input /ja "Afflatus Solace" <me>')
 	--windower.send_command('bind %0 input ')
 	
 	--CTRL + Number Key
@@ -55,8 +55,8 @@ function get_sets()
 	windower.send_command('bind %^6 input /ja "Penury" <me>')
 	windower.send_command('bind %^7 input /ja "Accession" <me>')
 	--windower.send_command('bind %^8 input ')
-	--windower.send_command('bind %^9 input ')
-	--windower.send_command('bind %^0 input ')
+	windower.send_command('bind %^9 input /ja "Light Arts" <me>')
+	windower.send_command('bind %^0 input /ja "Dark Arts" <me>')
 	
 	--ALT + Number Key
 	--windower.send_command('bind %!1 input ')
@@ -72,6 +72,7 @@ function get_sets()
 	
 	--Misc Keys
 	windower.send_command('bind %q input /ja "Divine Caress" <me>')
+	windower.send_command('bind %z input /ja "Sublimation" <me>')
 	
 	-- Weapon and Armor Type Change (Default sets to 1) 
 	Mode_Index = 1
@@ -103,7 +104,7 @@ function get_sets()
 		neck="Loricate Torque +1",
 		waist="Fucho-no-Obi",
 		left_ear="Odnowa Earring +1",
-		right_ear="Novia Earring",
+		right_ear="Eabani Earring",
 		left_ring="Defending Ring",
 		right_ring="Shneddick Ring",
 		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+5','Enmity-10','Damage taken-5%',}},
@@ -114,11 +115,11 @@ function get_sets()
 		neck="Asperity necklace", 
 		ear1="Brutal earring", 
 		ear2="Suppanomimi", 
-		hands="Telchine gloves", 
+		hands={ name="Telchine Gloves", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +10',}},
 		ring1="Mars's Ring", 
 		ring2="Rajas ring", 
 		waist="Cetl belt",
-		back="Cheviot cape", 
+		back="Alaunus's cape", 
 		legs="Telchine braconi", 
 		feet="Helios boots",
 	}
@@ -128,11 +129,11 @@ function get_sets()
 		neck="Asperity necklace", 
 		ear1="Brutal earring", 
 		ear2="Suppanomimi", 
-		hands="Telchine gloves", 
+		hands={ name="Telchine Gloves", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +10',}},
 		ring1="Mars's Ring", 
 		ring2="Rajas ring", 
 		waist="Cetl belt",
-		back="Cheviot cape", 
+		back="Alaunus's cape", 
 		legs="Telchine braconi", 
 		feet="Helios boots",
 	}
@@ -144,11 +145,11 @@ function get_sets()
 		neck="Light gorget", 
 		ear1="Bladeborn earring", 
 		ear2="Steelflash earring", 
-		hands="Telchine gloves", 
+		hands={ name="Telchine Gloves", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +10',}},
 		ring1="Mars's Ring", 
 		ring2="Cetl belt", 
 		waist="Fucho-no-obi",
-		back="Cheviot cape", 
+		back="Alaunus's cape", 
 		legs="Telchine braconi", 
 		feet="Helios boots",
 	}
@@ -193,7 +194,7 @@ function get_sets()
 		--ring2="", 
 		back="Swith cape", -- 3% fast cast
 		waist="Channeler's stone", -- 2% fast cast
-		legs="Orison pantaloons +2", --healing magic casting time -12%
+		legs="Ebers Pantaloons", --healing magic casting time -12%
 		feet="Chelona boots", -- 4% fast cast
 	}
 	sets.precast.reduction = { --Precast Gear with Quickening
@@ -210,7 +211,7 @@ function get_sets()
 		left_ear="Loquac. Earring",
 		ear2="Malignance earring",
 		left_ring="Persis Ring",
-		right_ring="Tamas Ring",
+		right_ring="",
 		back="Swith Cape",
 	}
 	sets.precast.status = { --[[Total Status Removal Cast Reduction = 10 "Light Arts" + 50 "White Mage Divine Benison V"+ 53 "Equipment" = 113% (80%Cap)]]--
@@ -227,7 +228,7 @@ function get_sets()
 		ring2="", 
 		back="Swith cape", -- 3% fast cast
 		waist="Witful belt", -- 3% fast cast
-		legs="Orison pantaloons +2", --healing magic casting time -12%
+		legs="Ebers Pantaloons", --healing magic casting time -12%
 		feet="Chelona boots",  -- 4% fast cast
 	}
 --Midcast Sets
@@ -235,7 +236,7 @@ function get_sets()
 	--Cure Potency
 	sets.midcast = {}
 	sets.midcast.recast = { --For spells unaffected by other stats and benefit from reduced recast and conserve mp
-		main="Earth Staff",
+		main="Malignance pole",
 		sub="Irenic Strap",
 		ammo="Clarus Stone",
 		head="Theophany Cap",
@@ -257,7 +258,7 @@ function get_sets()
 		ammo="Erlene's Notebook",
 		head={ name="Gende. Caubeen", augments={'Phys. dmg. taken -2%','"Cure" potency +2%',}},
 		body="Ebers Bliaud +1",
-		hands={ name="Telchine Gloves", augments={'"Cure" potency +7%',}},
+		hands={ name="Telchine Gloves", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +10',}},
 		legs="Ebers Pantaloons",
 		feet="Skaoi Boots",
 		neck="Phrenic Torque",
@@ -361,7 +362,7 @@ function get_sets()
 		head="Ebers Cap", 
 		neck="Colossus's torque", 
 		ear1="Lifestorm earring", 
-		ear2="Novia earring", 
+		ear2="Mimir earring", 
 		body="Ebers Bliaud +1", 
 		hands="Dynasty Mitts", 
 		ring1="Mediator's ring", 
@@ -401,8 +402,8 @@ function get_sets()
 		feet="Orsn. Duckbills +2",
 		neck="Colossus's Torque",
 		waist="Witful Belt",
-		left_ear="Mimir Earring",
-		right_ear="Novia Earring",
+		left_ear="",
+		right_ear="Mimir Earring",
 		left_ring="Mediator's Ring",
 		right_ring="Ephedra Ring",
 		back="Mending Cape",
@@ -444,7 +445,7 @@ function get_sets()
 		neck="Eddy necklace", 
 		ear1="Hecate's earring",
 		ear2="Novio earring", 
-		body="Respite cloak", 
+		body="", 
 		hands="Gendewitha gages", 
 		ring1="Mediator's ring", 
 		ring2="Angha Ring", 

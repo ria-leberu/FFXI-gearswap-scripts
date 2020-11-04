@@ -112,7 +112,7 @@ function get_sets()
 	-- Aftercast Sublimation
 	sets.standing = {}
 	sets.aftercast.sublimation = {
-		main="Earth staff", 
+		main="Malignance pole", 
 		sub="Oneiros grip", 
 		head="Academic's Mortarboard", 
 		body="Pedagogy gown", 
@@ -270,7 +270,7 @@ function get_sets()
 --Status Removal
 --Enhancing Magic
 	sets.midcast.Enhancing = {
-		main="Earth staff", 
+		main="Malignance pole", 
 		sub="Fulcio Grip", 
 		ammo="Savant's treatise", 
 		head="Arbatel bonnet", 

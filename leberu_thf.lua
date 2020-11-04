@@ -43,7 +43,7 @@ function get_sets()
 	--windower.send_command('bind %0 input ')
 	
 	--CTRL + Number Key
-	windower.send_command('bind %^1 input /ws "Rudra\'s Storm" <t>')
+	windower.send_command('bind %^1 input /ws "Evisceration" <t>')
 	--windower.send_command('bind %^2 input /ja "Chain Affinity" <me>')
 	--windower.send_command('bind %^3 input /ja "Efflux" <me>')
 	--windower.send_command('bind %^4 input /ja "Burst Affinity" <me>')
@@ -77,16 +77,16 @@ function get_sets()
 	Armor_Set_Names = { "TH", "Attack", "Accuracy", "PDT", "MDT"}
 	sets.weapons = {}
 	sets.weapons['Physical'] = { --Physical Damage Weapon Set
-		main="Sandung",
-		sub="Eminent dagger",
+		main="Kaja knife",
+		sub="Sandung",
 	}
 	sets.weapons['Magical'] = { --Aeolian Damage Weapon Set
-		main="Sandung",
-		sub="Eminent dagger",
+		main="Kaja knife",
+		sub="Sandung",
 	}
 	sets.weapons['TH'] = { --Physical Damage Weapon Set
-		main="Sandung",
-		sub="Thief's knife",
+		main="Kaja knife",
+		sub="Sandung",
 	}
 	sets.standing = {}
 	sets.standing['Attack'] = {
@@ -101,7 +101,7 @@ function get_sets()
 		waist="Cetl Belt",
 		left_ear="Allegro Earring",
 		right_ear="Thunder Earring",
-		left_ring="Enlivened Ring",
+		left_ring="Vocane ring",
 		right_ring="Rajas Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10',}},
 		
@@ -117,7 +117,7 @@ function get_sets()
 		waist="Cetl Belt",
 		left_ear="Allegro Earring",
 		right_ear="Thunder Earring",
-		left_ring="Enlivened Ring",
+		left_ring="Vocane ring",
 		right_ring="Rajas Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10',}},
 	}
@@ -132,7 +132,7 @@ function get_sets()
 		waist="Cetl Belt",
 		left_ear="Allegro Earring",
 		right_ear="Thunder Earring",
-		left_ring="Enlivened Ring",
+		left_ring="Vocane ring",
 		right_ring="Rajas Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10',}},
 	}
@@ -147,7 +147,7 @@ function get_sets()
 		waist="Cetl Belt",
 		left_ear="Allegro Earring",
 		right_ear="Thunder Earring",
-		left_ring="Enlivened Ring",
+		left_ring="Vocane ring",
 		right_ring="Rajas Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10',}},
 	}
@@ -162,7 +162,7 @@ function get_sets()
 		waist="Cetl Belt",
 		left_ear="Brutal earring",
 		right_ear="Suppanomimi",
-		left_ring="Enlivened Ring",
+		left_ring="Vocane ring",
 		right_ring="Rajas Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10',}},
 	}
@@ -208,7 +208,7 @@ function get_sets()
 		waist="Cetl Belt",
 		left_ear="Brutal earring",
 		right_ear="Suppanomimi",
-		left_ring="Enlivened Ring",
+		left_ring="Vocane ring",
 		right_ring="Rajas Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10',}},
 	}
@@ -223,7 +223,7 @@ function get_sets()
 		waist="Cetl Belt",
 		left_ear="Brutal earring",
 		right_ear="Suppanomimi",
-		left_ring="Enlivened Ring",
+		left_ring="Vocane ring",
 		right_ring="Rajas Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10',}},
 	}
@@ -272,6 +272,21 @@ function get_sets()
 		neck="Iqabi necklace",
 		waist="Cetl Belt",
 		left_ear="Allegro Earring",
+		right_ear="Thunder Earring",
+		left_ring="Enlivened Ring",
+		right_ring="Rajas Ring",
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10',}},
+	}
+	sets.WS.Evisceration = {
+		range="Moonring Blade",
+		head="Mummu Bonnet +1",
+		body="Mummu Jacket +1",
+		hands="Mummu Wrists +1",
+		legs="Meg. Chausses",
+		feet="Mummu Gamash. +1",
+		neck="Iqabi necklace",
+		waist="Cetl Belt",
+		left_ear="Moonshade earring",
 		right_ear="Thunder Earring",
 		left_ring="Enlivened Ring",
 		right_ring="Rajas Ring",

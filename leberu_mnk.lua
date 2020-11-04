@@ -1,7 +1,7 @@
 --[[ 
 Author: Rialya (Asura, Valefor, Bismarck)
 
-Rialya's THF Gearswap
+Rialya's MNK Gearswap
 
 LUA file for Blue Mage gear swap and on-th-fly mode switching.
 
@@ -24,7 +24,7 @@ display:show()
 function get_sets()
 	--Startup settings
 	include('rialya-commonitems.lua') --adds commonly used items for Organizer addon to pull into inventory
-	windower.send_command('du blinking self always off; wait 2; input /lockstyleset 1;') --adjust dressup settings and style lock 
+	windower.send_command('du blinking self always off; wait 2; input /lockstyleset 2;') --adjust dressup settings and style lock 
 	windower.send_command('bind f9 gs c toggle Weapon set')	--sets F9 to toggle Weapon set
 	windower.send_command('bind f10 gs c toggle Armor set')	--sets F10 to toggle Armor set
 	windower.send_command('bind f11 gs c toggle TH set')	--sets F11 to toggle Treasure Hunter set
@@ -67,7 +67,7 @@ function get_sets()
 	--windower.send_command('bind %!0 input ')
 	
 	--Misc Keys
-	windower.send_command('bind %w input /ma "Flash" <t>')
+	--windower.send_command('bind %w input /ma "Flash" <t>')
 	windower.send_command('bind %k exec key.txt')
 	
 	-- Weapon and Armor Type Change (Default sets to 1) 
@@ -78,130 +78,141 @@ function get_sets()
 	Armor_Set_Names = {"Attack", "Accuracy", "Tank-PDT", "Tank-MDT"}
 	sets.weapons = {}
 	sets.weapons['Attack'] = { --Physical Damage Weapon Set
-		main="Aettir",
+		main="Arasy sainti",
 		--sub="Eminent dagger",
 	}
 	sets.weapons['Tanking'] = { --Aeolian Damage Weapon Set
-		main="Aettir",
+		main="Arasy sainti",
 		--sub="Eminent dagger",
 	}
 	
 	sets.standing = {}
 	sets.standing['Attack'] = {
 		
-		head="Aya. Zucchetto",
-		body="Ayanmo Corazza",
-		hands="Aya. Manopolas",
-		legs="Carmine Cuisses +1",
-		feet="Aya. Gambieras",
-		neck="Iqabi necklace",
+		ammo="Honed Tathlum",
+		head="Ken. Jinpachi",
+		body="Ken. Samue",
+		hands="Malignance gloves",
+		legs="Ken. Hakama",
+		feet="Malignance boots",
+		neck="Iqabi Necklace",
 		waist="Cetl Belt",
-		left_ear="Allegro Earring",
-		right_ear="Thunder Earring",
-		left_ring="Enlivened Ring",
-		right_ring="Rajas Ring",
-		back="Aife's Mantle",
+		left_ear="Steelflash Earring",
+		right_ear="Bladeborn Earring",
+		left_ring="Rajas Ring",
+		right_ring="Enlivened Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dbl.Atk."+10',}},
 		
 	}
 	sets.standing['Accuracy'] = {
-		head="Aya. Zucchetto",
-		body="Ayanmo Corazza",
-		hands="Aya. Manopolas",
-		legs="Carmine Cuisses +1",
-		feet="Aya. Gambieras",
-		neck="Iqabi necklace",
+		
+		ammo="Honed Tathlum",
+		head="Ken. Jinpachi",
+		body="Ken. Samue",
+		hands="Malignance gloves",
+		legs="Ken. Hakama",
+		feet="Malignance boots",
+		neck="Iqabi Necklace",
 		waist="Cetl Belt",
-		left_ear="Allegro Earring",
-		right_ear="Thunder Earring",
-		left_ring="Enlivened Ring",
-		right_ring="Rajas Ring",
-		back="Aife's Mantle",
+		left_ear="Steelflash Earring",
+		right_ear="Bladeborn Earring",
+		left_ring="Rajas Ring",
+		right_ring="Enlivened Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dbl.Atk."+10',}},
 	}
 	sets.standing['PDT'] = {
-		head="Aya. Zucchetto",
-		body="Ayanmo Corazza",
-		hands="Aya. Manopolas",
-		legs="Carmine Cuisses +1",
-		feet="Aya. Gambieras",
-		neck="Iqabi necklace",
+		
+		ammo="Honed Tathlum",
+		head="Ken. Jinpachi",
+		body="Ken. Samue",
+		hands="Malignance gloves",
+		legs="Ken. Hakama",
+		feet="Malignance boots",
+		neck="Iqabi Necklace",
 		waist="Cetl Belt",
-		left_ear="Allegro Earring",
-		right_ear="Thunder Earring",
-		left_ring="Enlivened Ring",
-		right_ring="Rajas Ring",
-		back="Aife's Mantle",
+		left_ear="Steelflash Earring",
+		right_ear="Bladeborn Earring",
+		left_ring="Rajas Ring",
+		right_ring="Enlivened Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dbl.Atk."+10',}},
 	}
 	sets.standing['MDT'] = {
-		head="Aya. Zucchetto",
-		body="Ayanmo Corazza",
-		hands="Aya. Manopolas",
-		legs="Carmine Cuisses +1",
-		feet="Aya. Gambieras",
-		neck="Iqabi necklace",
+		
+		ammo="Honed Tathlum",
+		head="Ken. Jinpachi",
+		body="Ken. Samue",
+		hands="Malignance gloves",
+		legs="Ken. Hakama",
+		feet="Malignance boots",
+		neck="Iqabi Necklace",
 		waist="Cetl Belt",
-		left_ear="Allegro Earring",
-		right_ear="Thunder Earring",
-		left_ring="Enlivened Ring",
-		right_ring="Rajas Ring",
-		back="Aife's Mantle",
+		left_ear="Steelflash Earring",
+		right_ear="Bladeborn Earring",
+		left_ring="Rajas Ring",
+		right_ring="Enlivened Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dbl.Atk."+10',}},
 	}
 	
 	sets.TP = {}
 	sets.TP['Accuracy'] = {
-		head="Aya. Zucchetto",
-		body="Ayanmo Corazza",
-		hands="Aya. Manopolas",
-		legs="Carmine Cuisses +1",
-		feet="Aya. Gambieras",
-		neck="Iqabi necklace",
+		ammo="Honed Tathlum",
+		head="Ken. Jinpachi",
+		body="Ken. Samue",
+		hands="Malignance gloves",
+		legs="Ken. Hakama",
+		feet="Malignance boots",
+		neck="Iqabi Necklace",
 		waist="Cetl Belt",
-		left_ear="Brutal earring",
-		right_ear="Thunder Earring",
-		left_ring="Enlivened Ring",
-		right_ring="Rajas Ring",
-		back="Aife's Mantle",
+		left_ear="Steelflash Earring",
+		right_ear="Bladeborn Earring",
+		left_ring="Rajas Ring",
+		right_ring="Enlivened Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dbl.Atk."+10',}},
 	}
 	sets.TP['Attack'] = {
-		head="Aya. Zucchetto",
-		body="Ayanmo Corazza",
-		hands="Aya. Manopolas",
-		legs="Carmine Cuisses +1",
-		feet="Aya. Gambieras",
-		neck="Iqabi necklace",
+		ammo="Honed Tathlum",
+		head="Ken. Jinpachi",
+		body="Ken. Samue",
+		hands="Ken. Tekko",
+		legs="Ken. Hakama",
+		feet="Ken. Sune-Ate",
+		neck="Iqabi Necklace",
 		waist="Cetl Belt",
-		left_ear="Brutal earring",
-		right_ear="Thunder Earring",
-		left_ring="Enlivened Ring",
-		right_ring="Rajas Ring",
-		back="Aife's Mantle",
+		left_ear="Steelflash Earring",
+		right_ear="Bladeborn Earring",
+		left_ring="Rajas Ring",
+		right_ring="Enlivened Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dbl.Atk."+10',}},
 	}
 	sets.TP['PDT'] = {
-		head="Aya. Zucchetto",
-		body="Ayanmo Corazza",
-		hands="Aya. Manopolas",
-		legs="Carmine Cuisses +1",
-		feet="Aya. Gambieras",
-		neck="Iqabi necklace",
+		ammo="Honed Tathlum",
+		head="Ken. Jinpachi",
+		body="Ken. Samue",
+		hands="Malignance gloves",
+		legs="Ken. Hakama",
+		feet="Malignance boots",
+		neck="Iqabi Necklace",
 		waist="Cetl Belt",
-		left_ear="Allegro Earring",
-		right_ear="Thunder Earring",
-		left_ring="Enlivened Ring",
-		right_ring="Rajas Ring",
-		back="Aife's Mantle",
+		left_ear="Steelflash Earring",
+		right_ear="Bladeborn Earring",
+		left_ring="Rajas Ring",
+		right_ring="Vocane ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dbl.Atk."+10',}},
 	}
 	sets.TP['MDT'] = {
-		head="Aya. Zucchetto",
-		body="Ayanmo Corazza",
-		hands="Aya. Manopolas",
-		legs="Carmine Cuisses +1",
-		feet="Aya. Gambieras",
-		neck="Iqabi necklace",
+		ammo="Honed Tathlum",
+		head="Ken. Jinpachi",
+		body="Ken. Samue",
+		hands="Malignance gloves",
+		legs="Ken. Hakama",
+		feet="Malignance boots",
+		neck="Iqabi Necklace",
 		waist="Cetl Belt",
-		left_ear="Allegro Earring",
-		right_ear="Thunder Earring",
-		left_ring="Enlivened Ring",
-		right_ring="Rajas Ring",
-		back="Aife's Mantle",
+		left_ear="Steelflash Earring",
+		right_ear="Bladeborn Earring",
+		left_ring="Rajas Ring",
+		right_ring="Vocane ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dbl.Atk."+10',}},
 	}
 	
 	sets.precast = {
@@ -209,21 +220,81 @@ function get_sets()
 	sets.midcast = {}
 	sets.WS = {}
 	
-	sets.WS.Resolution = {
-		head="Aya. Zucchetto",
-		body="Ayanmo Corazza",
-		hands="Aya. Manopolas",
-		legs="Carmine Cuisses +1",
-		feet="Aya. Gambieras",
-		neck="Iqabi necklace",
+	sets.WS.ShijinSpiral = {
+		ammo="Honed Tathlum",
+		head="Ken. Jinpachi",
+		body="Ken. Samue",
+		hands="Ken. Tekko",
+		legs="Ken. Hakama",
+		feet="Ken. Sune-Ate",
+		neck="Iqabi Necklace",
 		waist="Cetl Belt",
-		left_ear="Brutal earring",
-		right_ear="Thunder Earring",
-		left_ring="Enlivened Ring",
-		right_ring="Rajas Ring",
-		back="Aife's Mantle",
+		left_ear="Steelflash Earring",
+		right_ear="Bladeborn Earring",
+		left_ring="Rajas Ring",
+		right_ring="Enlivened Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dbl.Atk."+10',}},
 	}
-	
+	sets.WS.VictorySmite = {
+		ammo="Honed Tathlum",
+		head="Ken. Jinpachi",
+		body="Ken. Samue",
+		hands="Ken. Tekko",
+		legs="Ken. Hakama",
+		feet="Ken. Sune-Ate",
+		neck="Iqabi Necklace",
+		waist="Cetl Belt",
+		left_ear="Steelflash Earring",
+		right_ear="Bladeborn Earring",
+		left_ring="Rajas Ring",
+		right_ring="Enlivened Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dbl.Atk."+10',}},
+	}
+	sets.WS.AsceticsFury = {
+		ammo="Honed Tathlum",
+		head="Ken. Jinpachi",
+		body="Ken. Samue",
+		hands="Ken. Tekko",
+		legs="Ken. Hakama",
+		feet="Ken. Sune-Ate",
+		neck="Iqabi Necklace",
+		waist="Cetl Belt",
+		left_ear="Steelflash Earring",
+		right_ear="Bladeborn Earring",
+		left_ring="Rajas Ring",
+		right_ring="Enlivened Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dbl.Atk."+10',}},
+	}
+	sets.WS.RagingFists = {
+		ammo="Honed Tathlum",
+		head="Ken. Jinpachi",
+		body="Ken. Samue",
+		hands="Ken. Tekko",
+		legs="Ken. Hakama",
+		feet="Ken. Sune-Ate",
+		neck="Iqabi Necklace",
+		waist="Cetl Belt",
+		left_ear="Steelflash Earring",
+		right_ear="Bladeborn Earring",
+		left_ring="Rajas Ring",
+		right_ring="Enlivened Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dbl.Atk."+10',}},
+	}
+	sets.WS.HowlingFist = {
+		ammo="Honed Tathlum",
+		head="Ken. Jinpachi",
+		body="Ken. Samue",
+		hands="Ken. Tekko",
+		legs="Ken. Hakama",
+		feet="Ken. Sune-Ate",
+		neck="Iqabi Necklace",
+		waist="Cetl Belt",
+		left_ear="Steelflash Earring",
+		right_ear="Bladeborn Earring",
+		left_ring="Rajas Ring",
+		right_ring="Enlivened Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dbl.Atk."+10',}},
+	}
 	--Trust Equip Swap
 		sets.trust = sets.TP['Accuracy']
 	-- Variables
@@ -236,17 +307,22 @@ function filtered_action(spell)
 
 end
 function precast(spell)
-	if spell.name == "Sanguine Blade" then
-		equip(sets.WS.SanguineBlade)
-		add_to_chat(158, '**Sanguine Gear Equipped**')
-	end
-	if spell.name == "Savage Blade" then
-		equip(sets.WS.SavageBlade)
-		add_to_chat(158, '**Savage Blade Gear Equipped**')
-	end
-	if spell.name == "Resolution" then
-		equip(sets.WS.Resolution)
-		add_to_chat(158, '**Resolution Gear Equipped**')
+	
+	if spell.name == "Shijin Spiral" then
+		equip(sets.WS.ShijinSpiral)
+		add_to_chat(158, '**Shijin Spiral Gear Equipped**')
+	elseif spell.name == "Victory Smite" then
+		equip(sets.WS.VictorySmite)
+		add_to_chat(158, '**Victory Smite Gear Equipped**')
+	elseif spell.name == "Ascetic's Fury" then
+		equip(sets.WS.AsceticsFury)
+		add_to_chat(158, '**Ascetic\'s Fury Gear Equipped**')
+	elseif spell.name == "Raging Fists" then
+		equip(sets.WS.RagingFists)
+		add_to_chat(158, '**Raging Fist Gear Equipped**')
+	elseif spell.name == "Howling Fist" then
+		equip(sets.WS.HowlingFist)
+		add_to_chat(158, '**Howling Fist Gear Equipped**')
 	end
 	
 end
