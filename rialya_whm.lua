@@ -43,8 +43,8 @@ function get_sets()
 	--windower.send_command('bind %6 input ')
 	--windower.send_command('bind %7 input ')
 	--windower.send_command('bind %8 input ')
-	windower.send_command('bind %9 input /ja "Afflatus Solace" <me>')
-	--windower.send_command('bind %0 input ')
+	windower.send_command('bind %9 input /ja "Light Arts" <me>')
+	windower.send_command('bind %0 input /ja "Dark Arts" <me>')
 	
 	--CTRL + Number Key
 	windower.send_command('bind %^1 input /ma "Curaga" <t>')
@@ -55,8 +55,8 @@ function get_sets()
 	windower.send_command('bind %^6 input /ja "Penury" <me>')
 	windower.send_command('bind %^7 input /ja "Accession" <me>')
 	--windower.send_command('bind %^8 input ')
-	windower.send_command('bind %^9 input /ja "Light Arts" <me>')
-	windower.send_command('bind %^0 input /ja "Dark Arts" <me>')
+	windower.send_command('bind %^9 input /ja "Afflatus Solace" <me>')
+	--indower.send_command('bind %^0 input')
 	
 	--ALT + Number Key
 	--windower.send_command('bind %!1 input ')
@@ -73,6 +73,7 @@ function get_sets()
 	--Misc Keys
 	windower.send_command('bind %q input /ja "Divine Caress" <me>')
 	windower.send_command('bind %z input /ja "Sublimation" <me>')
+	windower.send_command('bind %x input /item "Echo Drops" <me>')
 	
 	-- Weapon and Armor Type Change (Default sets to 1) 
 	Mode_Index = 1
@@ -197,7 +198,7 @@ function get_sets()
 		legs="Ebers Pantaloons", --healing magic casting time -12%
 		feet="Chelona boots", -- 4% fast cast
 	}
-	sets.precast.reduction = { --Precast Gear with Quickening
+	sets.precast.reduction = { --Precast Gear with Quickening (For spells that lack useful modification applied midcast)
 		--main="", 
 		--sub="",
 		ammo="Incantor Stone",
@@ -270,89 +271,89 @@ function get_sets()
 		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+5','Enmity-10','Damage taken-5%',}},
 	}
 	sets.midcast.CuragaPotency = { --[[ Cure Potency, EnmityDown, MND, HealingMagicSkill, ConserveMP, Haste, 50% potency  ]]--
-		main="Tamaxchi", -- Cure potency+22% 
-		sub="Sors shield", -- Cure potency+3% Enmity-5
-		ammo="Clarus stone", -- ConserveMP+3
-		head="Gendewitha caubeen", -- Cure potency+12% Enmity-8
-		neck="Phrenic torque", -- Enmity-7
-		ear1="Lifestorm earring", -- Enmity-1
-		ear2="Novia earring", -- Enmity-7
-		body="Ebers bliaud +1", -- AfflatusSolace+12 HealingMagicSkill+22
-		hands="Bokwus gloves", -- Cure potency+13% Enmity-3
-		ring1="Mediator's ring", -- Enmity-3
-		ring2="Ephedra ring", -- HealingMagicSkill+7 Enmity-3
-		back="Alaunus's cape", 
-		waist="Pythia sash", -- Enmity-4
-		legs="Nisse slacks", -- Enmity-5
-		feet="Orvail souliers +1", -- Enmity-5
+		main="Iridal Staff",
+		sub="Amicus Grip",
+		ammo="Erlene's Notebook",
+		head={ name="Gende. Caubeen", augments={'Phys. dmg. taken -2%','"Cure" potency +2%',}},
+		body="Theo. Briault",
+		hands={ name="Telchine Gloves", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +10',}},
+		legs="Ebers Pantaloons",
+		feet={ name="Vanya Clogs", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
+		neck="Cleric's Torque",
+		waist="Pythia Sash",
+		left_ear="Lifestorm Earring",
+		right_ear="Novia Earring",
+		left_ring="Mediator's Ring",
+		right_ring="Ephedra Ring",
+		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+5','Enmity-10','Damage taken-5%',}},
 	}
 	--Status Removal
 	sets.midcast.StatusNaSpells = { --[[ DivineVeil, EnmityDown, Haste, ConserveMP ]]--
-		main="Yagrush", --EnhancesDivineVeil
-		sub="",
-		ammo="Clarus stone", --ConserveMP
-		head="Ebers Cap", --EnhancesDivineVeil+20
-		neck="Phrenic torque", -- Enmity-7
-		ear1="Lifestorm earring", -- Enmity-1
-		ear2="Novia earring", -- Enmity-7
-		body="Weatherspoon robe +1", -- Haste+3
-		hands="Bokwus gloves", -- Enmity-3 Haste+3
-		ring1="Mediator's ring", -- Enmity-5
-		ring2="", 
-		back="Mending cape", -- Enmity-6
-		waist="", 
-		legs="Nisse slacks", -- Enmity-5
-		feet="Orvail souliers +1", --Enmity-5 Haste+1
+		main="Yagrush",
+		sub="Sors Shield",
+		ammo="Clarus Stone",
+		head="Haruspex Hat",
+		body="Ayanmo Corazza +2",
+		hands="Shrieker's Cuffs",
+		legs="Weath. Pants +1",
+		feet="Navon Crackows",
+		neck="Cleric's Torque",
+		waist="Cetl Belt",
+		left_ear="Mendi. Earring",
+		right_ear="Novia Earring",
+		left_ring="Mediator's Ring",
+		right_ring="Sangoma Ring",
+		back="Mending Cape",
 	}
 	sets.midcast.StatusCursna = { --[[ DivineVeil, EnhanceCursna, HealingMagicSkill, EnmityDown, Haste, ConserveMP ]]--
-		main="Yagrush", --EnhanceDivineVeil
-		sub="", 
-		ammo="Clarus stone", --ConserveMP
-		head="Gendewitha caubeen", 
-		neck="Malison medallion", 
-		ear1="Lifestorm earring", 
-		ear2="Novia earring", 
-		body="Gendewitha Bliaut", 
-		hands="Bokwus gloves", 
-		ring1="Mediator's ring", 
-		ring2="Ephedra ring", 
-		back="Alaunus's cape",  
-		waist="Cetl belt", 
-		legs="Theophany pantaloons", 
-		feet="Gendewitha galoshes",
+		main="Yagrush",
+		sub="Sors Shield",
+		ammo="Clarus Stone",
+		head="Nahtirah Hat",
+		body="Ebers Bliaud +1",
+		hands={ name="Fanatic Gloves", augments={'MP+50','Healing magic skill +10','"Conserve MP"+7','"Fast Cast"+7',}},
+		legs="Theo. Pantaloons",
+		feet="Gende. Galoshes",
+		neck="Malison Medallion",
+		waist="Cetl Belt",
+		left_ear="Lifestorm Earring",
+		right_ear="Novia Earring",
+		left_ring="Mediator's Ring",
+		right_ring="Ephedra Ring",
+		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+5','Enmity-10','Damage taken-5%',}},
 	}
-	sets.midcast.EraseSacrificeEsuna = {
-		main="Yagrush", 
-		sub="Sors shield",
-		ammo="Clarus stone", 
-		head="Gendewitha caubeen", 
-		neck="Cleric's torque", 
-		ear1="Lifestorm earring", 
-		ear2="Novia earring", 
-		body="Gendewitha Bliaut", 
-		hands="Bokwus gloves", 
-		ring1="Mediator's ring", 
-		ring2="Ephedra ring", 
-		back="Mending cape", 
-		waist="Cetl belt", 
-		legs="Nisse slacks", 
-		feet="Orvail souliers +1",
+	sets.midcast.EraseSacrificeEsuna = { --Yagrush, Recast Reduction (Haste, FastCast, Divine Benison), ConserveMP, -Enmity, -Damage Taken
+		main="Yagrush",
+		sub="Sors Shield",
+		ammo="Clarus Stone",
+		head="Haruspex Hat",
+		body="Ayanmo Corazza +2",
+		hands="Shrieker's Cuffs",
+		legs="Weath. Pants +1",
+		feet="Navon Crackows",
+		neck="Cleric's Torque",
+		waist="Cetl Belt",
+		left_ear="Mendi. Earring",
+		right_ear="Novia Earring",
+		left_ring="Mediator's Ring",
+		right_ring="Sangoma Ring",
+		back="Mending Cape",
 	}
 	sets.midcast.DivineCaress = {
-		main="Yagrush",
-		ammo="Clarus stone", 
-		head="Gendewitha caubeen", 
-		neck="Phrenic torque", 
-		ear1="Lifestorm earring", 
-		ear2="Novia earring", 
-		body="Gendewitha Bliaut", 
+		--main="",
+		--ammo="", 
+		--head="", 
+		--neck="", 
+		--ear1="", 
+		--ear2="", 
+		--body="", 
 		hands="Orison mitts +2", 
-		ring1="Mediator's ring", 
-		ring2="Ephedra ring", 
+		--ring1="", 
+		--ring2="E", 
 		back="Mending cape", 
-		waist="Korin Obi", 
-		legs="Nisse slacks", 
-		feet="Orvail souliers +1",
+		--waist="", 
+		--legs="", 
+		--feet="",
 	}
 --Enhancing Magic
 	sets.midcast.MaxEnhancing = {

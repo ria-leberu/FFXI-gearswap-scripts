@@ -1,0 +1,17 @@
+sets.exported={
+    main="Yagrush",
+    sub="Sors Shield",
+    ammo="Clarus Stone",
+    head="Haruspex Hat",
+    body="Ayanmo Corazza +2",
+    hands="Shrieker's Cuffs",
+    legs="Weath. Pants +1",
+    feet="Navon Crackows",
+    neck="Cleric's Torque",
+    waist="Cetl Belt",
+    left_ear="Mendi. Earring",
+    right_ear="Novia Earring",
+    left_ring="Mediator's Ring",
+    right_ring="Sangoma Ring",
+    back="Mending Cape",
+}

@@ -92,7 +92,7 @@ function get_sets()
 	sets.standing['Attack'] = {
 		ammo="Jukukik Feather",
 		head="Malignance chapeau",
-		body={ name="Qaaxo Harness", augments={'Attack+15','Evasion+15','"Dbl.Atk."+2',}},
+		body="Adhemar jacket +1",
 		hands="Malignance gloves",
 		legs={ name="Taeon Tights", augments={'Accuracy+11','"Triple Atk."+2',}},
 		feet={ name="Taeon Boots", augments={'Accuracy+12','"Triple Atk."+2',}},
@@ -107,7 +107,7 @@ function get_sets()
 	sets.standing['Accuracy'] = {
 	    ammo="Jukukik Feather",
 		head="Malignance chapeau",
-		body={ name="Qaaxo Harness", augments={'Attack+15','Evasion+15','"Dbl.Atk."+2',}},
+		body="Adhemar jacket +1", 
 		hands="Malignance gloves",
 		legs={ name="Taeon Tights", augments={'Accuracy+11','"Triple Atk."+2',}},
 		feet={ name="Taeon Boots", augments={'Accuracy+12','"Triple Atk."+2',}},
@@ -122,7 +122,7 @@ function get_sets()
 	sets.standing['PDT'] = {
 		ammo="Jukukik Feather",
 		head="Malignance chapeau",
-		body={ name="Qaaxo Harness", augments={'Attack+15','Evasion+15','"Dbl.Atk."+2',}},
+		body="Adhemar jacket +1",
 		hands="Malignance gloves",
 		legs={ name="Taeon Tights", augments={'Accuracy+11','"Triple Atk."+2',}},
 		feet={ name="Taeon Boots", augments={'Accuracy+12','"Triple Atk."+2',}},
@@ -198,7 +198,7 @@ function get_sets()
 	sets.TP['PDT'] = {
 		ammo="Jukukik Feather",
 		head="Malignance chapeau",
-		body={ name="Qaaxo Harness", augments={'Attack+15','Evasion+15','"Dbl.Atk."+2',}},
+		body="Adhemar jacket +1",
 		hands={ name="Taeon Gloves", augments={'Accuracy+12','"Triple Atk."+2',}},
 		legs={ name="Taeon Tights", augments={'Accuracy+11','"Triple Atk."+2',}},
 		feet={ name="Taeon Boots", augments={'Accuracy+12','"Triple Atk."+2',}},
@@ -248,7 +248,7 @@ function get_sets()
 	sets.WS.MandalicStab = {
 		ammo="Jukukik Feather",
 		head={ name="Herculean Helm", augments={'Accuracy+8 Attack+8','Weapon skill damage +5%','Accuracy+3',}},
-		body={ name="Qaaxo Harness", augments={'Attack+15','Evasion+15','"Dbl.Atk."+2',}},
+		body="Adhemar jacket +1",
 		hands={ name="Taeon Gloves", augments={'Accuracy+12','"Triple Atk."+2',}},
 		legs={ name="Taeon Tights", augments={'Accuracy+9','Crit.hit rate+3','Weapon skill damage +3%',}},
 		feet={ name="Taeon Boots", augments={'Attack+21','Crit.hit rate+3','Crit. hit damage +3%',}},
@@ -263,7 +263,7 @@ function get_sets()
 	sets.WS.RudrasStorm = {
 		 ammo="Jukukik Feather",
 		head={ name="Herculean Helm", augments={'Accuracy+8 Attack+8','Weapon skill damage +5%','Accuracy+3',}},
-		body={ name="Qaaxo Harness", augments={'Attack+15','Evasion+15','"Dbl.Atk."+2',}},
+		body="Adhemar jacket +1",
 		hands={ name="Taeon Gloves", augments={'Accuracy+12','"Triple Atk."+2',}},
 		legs={ name="Taeon Tights", augments={'Accuracy+9','Crit.hit rate+3','Weapon skill damage +3%',}},
 		feet={ name="Taeon Boots", augments={'Attack+21','Crit.hit rate+3','Crit. hit damage +3%',}},
@@ -280,7 +280,7 @@ function get_sets()
 		sub="Eminent Dagger",
 		ammo="Jukukik Feather",
 		head={ name="Herculean Helm", augments={'Accuracy+8 Attack+8','Weapon skill damage +5%','Accuracy+3',}},
-		body={ name="Qaaxo Harness", augments={'Attack+15','Evasion+15','"Dbl.Atk."+2',}},
+		body="Adhemar jacket +1",
 		hands={ name="Taeon Gloves", augments={'Accuracy+12','"Triple Atk."+2',}},
 		legs="Limbo Trousers",
 		feet={ name="Taeon Boots", augments={'Accuracy+12','"Triple Atk."+2',}},
@@ -329,7 +329,7 @@ function get_sets()
 		neck="Subtlety spectacles",
 		left_ear="Dudgeon earring",
 		right_ear="Heartseeker earring",
-		body="Qaaxo harness",
+		body="Adhemar jacket +1",
 		hands="Taeon gloves",
 		left_ring="Adler ring",
 		right_ring="Mars's Ring",
