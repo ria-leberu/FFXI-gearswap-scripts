@@ -168,21 +168,20 @@ function get_sets()
 		feet="Chelona boots", --MPRecoveredWhileHealing+5
 	}
 	-- precast Sets
-	sets.precast = { --[[Precast Gear (No Quickening): FastCast; Total SpellCast Reduction = 10 "Light Arts" +  53 "Equipment" = 63%]]--
-		main="Yagrush", 
-		--sub="",
-		ammo="Incantor stone", 	-- 2% Fast Cast
-		head="Nahtirah hat", -- 10% Fast Cast
-		body="Inyanga jubbah +1", --13% fast cast
-		ear1="Loquacious earring", --2% fast cast
-		ear2="Malignance earring", --4fc
-		hands="Gendewitha gages", -- 7% fast cast
-		back="Swith cape", -- 3% fast cast
-		waist="Channeler's stone", -- 2% fast cast
-		legs="Artsieq hose", -- 5% fast cast
-		feet="Chelona boots", -- 4% fast cast
+	sets.precast = { --Precast Gear (No Quickening): FastCast
+		main="Yagrush",
+		ammo="Incantor Stone",
+		head="Nahtirah Hat",
+		body="Inyanga Jubbah +1",
+		hands={ name="Gendewitha Gages", augments={'Phys. dmg. taken -1%','Song recast delay -1',}},
+		legs="Artsieq Hose",
+		feet="Chelona Boots",
+		waist="Embla Sash",
+		left_ear="Loquac. Earring",
+		right_ear="Malignance Earring",
+		back="Swith Cape",
 	}
-	sets.precast.cure = { --[[Total CureCast Reduction = 10 "Light Arts" + 20 "Merits: Cure Cast Reduction" + 67 "Equipment" = 97%]]--
+	sets.precast.cure = { --Total CureCast Reduction, Fast Cast
 		--main="Ababinili", -- cure spellcasting time -10%
 		ammo="Incantor stone", -- 2% fast cast
 		head="Nahtirah hat",  -- 10% fast cast
@@ -194,7 +193,7 @@ function get_sets()
 		--ring1="", 
 		--ring2="", 
 		back="Swith cape", -- 3% fast cast
-		waist="Channeler's stone", -- 2% fast cast
+		waist="Embla Sash",
 		legs="Ebers Pantaloons", --healing magic casting time -12%
 		feet="Chelona boots", -- 4% fast cast
 	}

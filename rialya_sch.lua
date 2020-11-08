@@ -343,7 +343,7 @@ function get_sets()
 		main="Marin Staff",
 		sub="Mephitis Grip",
 		range="Aureole",
-		body=""
+		body="",
 		hands="Amalric gages +1",
 		legs="Psycloth Lappas",
 		feet={ name="Uk'uxkaj Boots", augments={'Haste+2','"Snapshot"+2','MND+8',}},

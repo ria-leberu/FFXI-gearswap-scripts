@@ -95,7 +95,7 @@ function get_sets()
 		legs="Assid. Pants +1",
 		feet="Inyanga Crackows",
 		neck="Loricate Torque +1",
-		waist="Channeler's Stone",
+		waist="",
 		left_ear="Andoaa Earring",
 		right_ear="Novia Earring",
 		left_ring="Sangoma Ring",
@@ -129,7 +129,7 @@ function get_sets()
 		ear2="Malignance earring",
 		hands="Gendewitha gages", -- 7% fast cast
 		back="Swith cape", -- 3% fast cast
-		waist="Channeler's stone", -- 2% fast cast
+		waist="", -- 2% fast cast
 		legs="Artsieq hose", -- 5% fast cast
 		feet="Chelona boots", -- 4% fast cast
 	}
@@ -145,7 +145,7 @@ function get_sets()
 		--ring1="", 
 		--ring2="", 
 		back="Swith cape", -- 3% fast cast
-		waist="Channeler's stone", -- 2% fast cast
+		waist="", -- 2% fast cast
 		legs="Orison pantaloons +2", --healing magic casting time -12%
 		feet="Chelona boots", -- 4% fast cast
 	}
