@@ -67,7 +67,7 @@ function get_sets()
 	windower.send_command('bind %!6 input /ja "Celerity" <me>')
 	--windower.send_command('bind %!7 input ')
 	--windower.send_command('bind %!8 input ')
-	--windower.send_command('bind %!9 input ')
+	windower.send_command('bind %!9 input /ma "Aspir" <t>')
 	--windower.send_command('bind %!0 input ')
 	
 	--Misc Keys
@@ -82,24 +82,24 @@ function get_sets()
 	Armor_Set_Names = {"Support", "Hybrid", "PDT", "MDT"}
 	-- Obi Sets
 	sets.obi = {}
-	sets.obi.Light = {waist='Korin Obi'}
-	sets.obi.Dark = {waist='Anrin Obi'}
+	sets.obi.Light = {waist='Hachirin-no-Obi'}
+	sets.obi.Dark = {waist='Hachirin-no-Obi'}
 	sets.weapons = {}
 	sets.weapons['Support'] = {}
 	sets.weapons['Frontline'] = {
 		main="Yagrush",
-		sub="Genbu's shield",
+		sub="",
 	}
 	sets.weapons.dispelga = {
 		main="Daybreak",
 	}
-	sets.aftercast = { --[[aftercast Gear: Refresh, DamageTakenDown, MagicDamageTakenDown, PhysicalDamageTakenDown, M.EvasionUp, EvasionUp]]--
+	sets.aftercast = { --[[aftercast Gear: DamageTakenDown, MagicDamageTakenDown, PhysicalDamageTakenDown, M.EvasionUp, EvasionUp]]--
 		main="Malignance Pole",
 		sub="Enki Strap",
 		ammo="Staunch Tathlum",
 		head="Inyanga Tiara +1",
-		body="Inyanga Jubbah +1",
-		hands="Inyan. Dastanas +1",
+		body="Inyanga Jubbah +2",
+		hands="Inyan. Dastanas +2",
 		legs="Inyanga Shalwar +1",
 		feet="Inyan. Crackows +1",
 		neck="Loricate Torque +1",
@@ -142,7 +142,7 @@ function get_sets()
 	}
 	sets.WS.Realmrazer = {
 		head="Theophany cap", 
-		body="Weatherspoon robe +1", 
+		body="", 
 		neck="Light gorget", 
 		ear1="Bladeborn earring", 
 		ear2="Steelflash earring", 
@@ -172,7 +172,7 @@ function get_sets()
 		main="Yagrush",
 		ammo="Incantor Stone",
 		head="Nahtirah Hat",
-		body="Inyanga Jubbah +1",
+		body="Inyanga Jubbah +2",
 		hands={ name="Gendewitha Gages", augments={'Phys. dmg. taken -1%','Song recast delay -1',}},
 		legs="Artsieq Hose",
 		feet="Chelona Boots",
@@ -202,7 +202,7 @@ function get_sets()
 		--sub="",
 		ammo="Incantor Stone",
 		head="Nahtirah Hat",
-		body="Inyanga Jubbah +1",
+		body="Inyanga Jubbah +2",
 		hands={ name="Gendewitha Gages", augments={'Phys. dmg. taken -1%','Song recast delay -1',}},
 		legs="Artsieq Hose",
 		feet="Chelona Boots",
@@ -425,8 +425,8 @@ function get_sets()
 		sub="Enki Strap",
 		ammo="Elis Tome",
 		head="C. Palug Crown",
-		body="Inyanga Jubbah +1",
-		hands="Inyanga Dastanas +1",
+		body="Inyanga Jubbah +2",
+		hands="Inyan. Dastanas +2",
 		legs={ name="Chironic Hose", augments={'Blood Pact Dmg.+6','Pet: STR+9','Accuracy+11 Attack+11','Mag. Acc.+15 "Mag.Atk.Bns."+15',}},
 		feet="Skaoi Boots",
 		neck="Noetic Torque",
@@ -476,8 +476,8 @@ function get_sets()
 		sub="Enki Strap",
 		ammo="Elis Tome",
 		head="C. Palug Crown",
-		body="Inyanga Jubbah +1",
-		hands="Inyanga Dastanas +1",
+		body="Inyanga Jubbah +2",
+		hands="Inyan. Dastanas +2",
 		legs={ name="Chironic Hose", augments={'Blood Pact Dmg.+6','Pet: STR+9','Accuracy+11 Attack+11','Mag. Acc.+15 "Mag.Atk.Bns."+15',}},
 		feet="Skaoi Boots",
 		neck="Noetic Torque",
@@ -511,8 +511,8 @@ function get_sets()
 		sub="Enki Strap",
 		ammo="Elis Tome",
 		head="C. Palug Crown",
-		body="Inyanga Jubbah +1",
-		hands="Inyanga Dastanas +1",
+		body="Inyanga Jubbah +2",
+		hands="Inyan. Dastanas +2",
 		legs={ name="Chironic Hose", augments={'Blood Pact Dmg.+6','Pet: STR+9','Accuracy+11 Attack+11','Mag. Acc.+15 "Mag.Atk.Bns."+15',}},
 		feet="Skaoi Boots",
 		neck="Noetic Torque",
@@ -524,38 +524,38 @@ function get_sets()
 		back="Refraction Cape",
 	}
 	sets.midcast.DarkAcc = {
-		main="Marin staff", 
-		sub="Mephitis grip", 
-		ammo="", 
-		head="Weatherspoon corona +1", 
-		neck="Imbodla Necklace", 
-		ear1="Lifestorm earring", 
-		ear2="Psystorm earring", 
-		body="Theophany briault", 
-		hands="Gendewitha gages", 
-		ring1="Mediator's ring", 
-		ring2="Angha Ring", 
-		back="Refraction cape", 
-		waist="Aswang sash", 
-		legs="Telchine braconi", 
-		feet="Orvail souliers +1",
+		main="Daybreak",
+		sub="Ammurapi Shield",
+		ammo="Elis Tome",
+		head="C. Palug Crown",
+		body="Ayanmo Corazza +2",
+		hands="Inyan. Dastanas +2",
+		legs={ name="Chironic Hose", augments={'Blood Pact Dmg.+6','Pet: STR+9','Accuracy+11 Attack+11','Mag. Acc.+15 "Mag.Atk.Bns."+15',}},
+		feet="Orvail Souliers +1",
+		neck="Eddy Necklace",
+		waist="Fucho-no-Obi",
+		left_ear="Malignance Earring",
+		right_ear="Gwati Earring",
+		left_ring="Mediator's Ring",
+		right_ring="Archon Ring",
+		back="Toro Cape",
 	}		
 	sets.midcast.DrainAspir = {
-		main="Marin staff", 
-		sub="Mephitis grip", 
-		ammo="", 
-		head="Weatherspoon corona +1", 
-		neck="Imbodla Necklace", 
-		ear1="Lifestorm earring", 
-		ear2="Psystorm earring", 
-		body="Theophany briault", 
-		hands="Gendewitha gages", 
-		ring1="Mediator's ring", 
-		ring2="Angha Ring", 
-		back="Refraction cape", 
-		waist="Aswang sash", 
-		legs="Telchine braconi", 
-		feet="Orvail souliers +1",
+		main="Daybreak", --BIS Rubicundity
+		sub="Ammurapi Shield", -- Current BIS
+		ammo="Elis Tome", -- BIS 	Pemphredo Tathlum
+		head="C. Palug Crown", -- Current BIS
+		body="Ayanmo Corazza +2", -- BIS Shango Robe
+		hands="Inyan. Dastanas +2", -- Current BIS
+		legs={ name="Chironic Hose", augments={'Blood Pact Dmg.+6','Pet: STR+9','Accuracy+11 Attack+11','Mag. Acc.+15 "Mag.Atk.Bns."+15',}}, --BIS Theophany Pantaloons +3
+		feet="Orvail Souliers +1", -- BIS Theophany Duckbills +3
+		neck="Eddy Necklace", -- BIS Erra Pendant
+		waist="Fucho-no-Obi", -- Current BIS
+		left_ear="Malignance Earring", --Current BIS
+		right_ear="Gwati Earring", --BIS Mani Earring
+		left_ring="Mediator's Ring", -- BIS Evanescence Ring
+		right_ring="Archon Ring", --BIS Stikini Ring +1
+		back="Toro Cape", --BIS Aurist's Cape 
 	}
 end
 function filtered_action(spell) -- Events (Casting)

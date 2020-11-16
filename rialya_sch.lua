@@ -113,7 +113,7 @@ function get_sets()
 	sets.standing = {}
 	sets.aftercast.sublimation = {
 		main="Malignance pole", 
-		sub="Oneiros grip", 
+		sub="", 
 		head="Academic's Mortarboard", 
 		body="Pedagogy gown", 
 		neck="Loricate torque +1",  
@@ -128,7 +128,7 @@ function get_sets()
 		}
 	sets.resting = { --Resting
 		main="Boonwell staff", 
-		sub="Oneiros grip", 
+		sub="", 
 		ammo="Clarus stone", 
 		head="Orvail Corona +1", 
 		neck="Grandiose chain", 
@@ -335,7 +335,7 @@ function get_sets()
 		ring1="Mediator's ring", 
 		ring2="Sangoma ring", 
 		back="Refraction cape", 
-		waist="Demonry sash", 
+		waist="", 
 		legs="Psycloth lappas", 
 		feet="Orvail souliers +1",
 		}
@@ -348,7 +348,7 @@ function get_sets()
 		legs="Psycloth Lappas",
 		feet={ name="Uk'uxkaj Boots", augments={'Haste+2','"Snapshot"+2','MND+8',}},
 		neck="Imbodla Necklace",
-		waist="Demonry Sash",
+		waist="",
 		left_ear="Lifestorm Earring",
 		right_ear="Psystorm Earring",
 		left_ring="Mediator's Ring",
@@ -368,7 +368,7 @@ function get_sets()
 		ring1="Shiva ring", 
 		ring2="Shiva ring", 
 		back="Refraction cape", 
-		waist="Demonry sash", 
+		waist="", 
 		legs="Psycloth lappas", 
 		feet="Orvail souliers +1",
 	}
@@ -649,32 +649,32 @@ function midcast(spell)
 				--end
 				if spell.element == 'Stone' then
 					if world.day_element == 'Stone' or  world.weather_element == 'Stone' then
-					equip({waist="Dorin Obi"})
+					equip({waist="Hachirin-no-Obi"})
 					add_to_chat(158, '**Earth Day/Weather Obi Equipped**')
 					end
 				elseif spell.element == 'Water' then
 					if world.day_element == 'Water' or  world.weather_element == 'Water' then
-					equip({waist="Suirin Obi"})
+					equip({waist="Hachirin-no-Obi"})
 					add_to_chat(158, '**Water Day/Weather Obi Equipped**')
 					end
 				elseif spell.element == 'Wind' then
 					if world.day_element == 'Wind' or  world.weather_element == 'Wind' then
-					equip({waist="Furin Obi"})
+					equip({waist="Hachirin-no-Obi"})
 					add_to_chat(158, '**Wind Day/Weather Obi Equipped**')
 					end
 				elseif spell.element == 'Fire' then
 					if world.day_element == 'Fire' or  world.weather_element == 'Fire' then
-					equip({waist="Karin Obi"})
+					equip({waist="Hachirin-no-Obi"})
 					add_to_chat(158, '**Fire Day/Weather Obi Equipped**')
 					end
 				elseif spell.element == 'Ice' then
 					if world.day_element == 'Ice' or  world.weather_element == 'Ice' then
-					equip({waist="Hyorin Obi"})
+					equip({waist="Hachirin-no-Obi"})
 					add_to_chat(158, '**Ice Day/Weather Obi Equipped**')
 					end
 				elseif spell.element == 'Thunder' then
 					if world.day_element == 'Thunder' or  world.weather_element == 'Thunder' then
-					equip({waist="Rairin Obi"})
+					equip({waist="Hachirin-no-Obi"})
 					add_to_chat(158, '**Lightning Day/Weather Obi Equipped**')
 					end
 				elseif spell.name == 'Impact' then
