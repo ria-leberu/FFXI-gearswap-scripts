@@ -5,13 +5,41 @@ Rialya's WHM Gearswap
 
 LUA file for White Mage gear swap and on-th-fly mode switching.
 
--Cure (precast) Prioritizes Fast Cast and Cure Cast Time reduction. 
--Cure (midcast) prioritizes Potency, MP Efficiency, Afflatus Solace, and Enmity Reduction
--White Mage Trait "Tranquil Heart" bases its enmity reduction on healing 
-magic skill, resulting in a -25% enmity reduction at 500 healing magic skill 
-(-0.5 Enmity/10 Healing Magic). Enmity generation will be calculated by:
-(1-EnmityEquipment/100)*(1-(HealingMagicSkill/10*0.5))
+	-Cure (precast) Prioritizes Fast Cast and Cure Cast Time reduction. 
+	-Cure (midcast) prioritizes Potency, MP Efficiency, Afflatus Solace, and Enmity Reduction
+	-White Mage Trait "Tranquil Heart" bases its enmity reduction on healing 
+	magic skill, resulting in a -25% enmity reduction at 500 healing magic skill 
+	(-0.5 Enmity/10 Healing Magic). Enmity generation will be calculated by:
+	(1-EnmityEquipment/100)*(1-(HealingMagicSkill/10*0.5))
 
+Cure Notes:
+
+	Cure Cast Reduction
+	
+	Enmity Reduction
+	
+	Potency
+	
+	Afflatus Solace Stoneskin Potency
+
+
+Regen Notes:
+	
+	Potency
+
+		Regen I/II/III/IV = 5/12/20/30 HP per tic = Duration: 75/60/60/60 sec
+		Group I Regen Merits: +5 to each regen = 10/17/25/35
+
+		Bolelabunga (Potency +10%)
+		Inyanga tiara +2 (Potency +14%)
+		Piety Briault +3 (Potency +52%)
+
+		10*1.76 = Floor(17.6) = 17
+		17*1.76 = Floor(29.96) = 29
+		25*1.76 = Floor(44) = 44
+		35*1.76 = Floor(61.6) = 61
+
+	Duration
 ]]--
 include('organizer-lib.lua')
 
