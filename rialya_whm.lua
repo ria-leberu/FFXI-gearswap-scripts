@@ -1,5 +1,6 @@
 --[[ 
-Author: Rialya (Asura, Valefor, Bismarck)
+Author: Rialya (Asura, Valefor, Bismarck) 
+11.18.2020
 
 Rialya's WHM Gearswap
 
@@ -13,21 +14,49 @@ LUA file for White Mage gear swap and on-th-fly mode switching.
 	(1-EnmityEquipment/100)*(1-(HealingMagicSkill/10*0.5))
 
 Cure Notes:
-
-	Cure Cast Reduction
 	
-	Enmity Reduction
+	When selecting gear for single target Cures, I prefer to maximize the effect of Afflatus Solace and get MP returns.
+	This locks in Ebers Briault +1, Alaunus' Cape, and Ebers Pantaloons +1.
+
+	Cure Cast Reduction (Caps at -80% cast time)
+	
+	Enmity Reduction (Caps at -50 from equipment)
 	
 	Potency
+		Single Target Cures
+		
+		Curagas
+		
+		
 	
 	Afflatus Solace Stoneskin Potency
+	
+	
+	Ideal Single Target Cure Set
+	
+		main="Iridal Staff",
+		sub=
+		ammo=
+		head=
+		body="Ebers Bliaud +1", --Solace+14, MND33, VIT20, HealingMagic+24, 
+		hands=
+		legs="Ebers Pantaloons +1", --VIT22, MND33, Convert6%CureToMP
+		feet=
+		neck=
+		waist=
+		left_ear=
+		right_ear=
+		left_ring=
+		right_ring=
+		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+5','Enmity-10','Damage taken-5%',}},
+	
 
 
 Regen Notes:
 	
 	Potency
 
-		Regen I/II/III/IV = 5/12/20/30 HP per tic = Duration: 75/60/60/60 sec
+		Regen I/II/III/IV = 5/12/20/30 HP per tic
 		Group I Regen Merits: +5 to each regen = 10/17/25/35
 
 		Bolelabunga (Potency +10%)
@@ -40,6 +69,33 @@ Regen Notes:
 		35*1.76 = Floor(61.6) = 61
 
 	Duration
+		
+		Duration: 75/60/60/60 sec
+		
+		Theophany pantaloons +3 (+24)
+		Ebers Mitts +1 (+22)
+		Ammurapi Shield (+10% Enhancing)
+		Telchine pigaches (+10% Enhancing)
+		Embla Sash (+10% Enhancing)
+		
+		75+46=121*1.3=157s/3 = 52 tics
+		60+46=106*1.3=137s/3 = 45 tics
+		
+		
+	Ideal Regen (Max Potency with Duration Secondary)
+		
+		Regen I (15 MP)= 17*52 = 884 hp (58.93 HP/MP)
+		Regen II (36 MP)= 29*45 = 1305 hp (36.25 HP/MP)
+		Regen III (64 MP) = 44*45 = 1980 hp (30.93 HP/MP)
+		Regen IV (82 MP)= 61*45 = 2745 hp (33.47 HP/MP)
+		
+
+Barspell Notes:
+
+	Potency
+		1 Barelement = 1 Magic Evasion to Elemental, Barstatus likely works the same
+		
+		
 ]]--
 include('organizer-lib.lua')
 
@@ -102,6 +158,7 @@ function get_sets()
 	windower.send_command('bind %q input /ja "Divine Caress" <me>')
 	windower.send_command('bind %z input /ja "Sublimation" <me>')
 	windower.send_command('bind %x input /item "Echo Drops" <me>')
+	windower.send_command('alias bslp input /ma "Barsleepra" <me>')
 	
 	-- Weapon and Armor Type Change (Default sets to 1) 
 	Mode_Index = 1
@@ -222,7 +279,7 @@ function get_sets()
 		--ring2="", 
 		back="Swith cape", -- 3% fast cast
 		waist="Embla Sash",
-		legs="Ebers Pantaloons", --healing magic casting time -12%
+		legs="Ebers Pantaloons +1", --healing magic casting time -12%
 		feet="Chelona boots", -- 4% fast cast
 	}
 	sets.precast.reduction = { --Precast Gear with Quickening (For spells that lack useful modification applied midcast)
@@ -256,7 +313,7 @@ function get_sets()
 		ring2="", 
 		back="Swith cape", -- 3% fast cast
 		waist="Witful belt", -- 3% fast cast
-		legs="Ebers Pantaloons", --healing magic casting time -12%
+		legs="Ebers Pantaloons +1", --healing magic casting time -12%
 		feet="Chelona boots",  -- 4% fast cast
 	}
 --Midcast Sets
@@ -287,7 +344,7 @@ function get_sets()
 		head={ name="Gende. Caubeen", augments={'Phys. dmg. taken -2%','"Cure" potency +2%',}},
 		body="Ebers Bliaud +1",
 		hands={ name="Telchine Gloves", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +10',}},
-		legs="Ebers Pantaloons",
+		legs="Ebers Pantaloons +1",
 		feet="Skaoi Boots",
 		neck="Phrenic Torque",
 		waist="Pythia Sash",
@@ -304,7 +361,7 @@ function get_sets()
 		head={ name="Gende. Caubeen", augments={'Phys. dmg. taken -2%','"Cure" potency +2%',}},
 		body="Theo. Briault",
 		hands={ name="Telchine Gloves", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +10',}},
-		legs="Ebers Pantaloons",
+		legs="Ebers Pantaloons +1",
 		feet={ name="Vanya Clogs", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
 		neck="Cleric's Torque",
 		waist="Pythia Sash",
@@ -409,7 +466,7 @@ function get_sets()
 		neck="Noetic torque", 
 		ear1="Lifestorm earring", 
 		ear2="Novia earring", 
-		body="Cleric's briault +2", --Enhance Regen Potency
+		body="Piety Briault +3", --Enhance Regen Potency
 		hands="Orison mitts +2", 
 		ring1="Mediator's ring", 
 		ring2="Ephedra ring", 
@@ -483,37 +540,37 @@ function get_sets()
 		feet="Orvail souliers +1",
 	}
 	sets.midcast.EnfeeblingWhiteAcc = {
-		main="Marin staff", 
-		sub="Mephitis grip", 
-		ammo="", 
-		head="Cath Palug crown", 
-		neck="Imbodla Necklace", 
-		ear1="Lifestorm earring", 
-		ear2="Psystorm earring", 
-		body="Theophany briault", 
-		hands="Gendewitha gages", 
-		ring1="Mediator's ring", 
-		ring2="Angha Ring", 
-		back="Refraction cape", 
-		waist="Aswang sash", 
-		legs="Telchine braconi", 
-		feet="Orvail souliers +1",
-	}
-	sets.midcast.Divine = {
-		main="Marin Staff",
-		sub="Enki Strap",
+		main="Daybreak",
+		sub="Ammurapi Shield",
 		ammo="Elis Tome",
 		head="C. Palug Crown",
 		body="Inyanga Jubbah +2",
 		hands="Inyan. Dastanas +2",
-		legs={ name="Chironic Hose", augments={'Blood Pact Dmg.+6','Pet: STR+9','Accuracy+11 Attack+11','Mag. Acc.+15 "Mag.Atk.Bns."+15',}},
+		legs="Aya. Cosciales +1",
 		feet="Skaoi Boots",
 		neck="Noetic Torque",
 		waist="Rumination Sash",
-		left_ear="Lifestorm Earring",
-		right_ear="Psystorm Earring",
-		left_ring="Mediator's Ring",
+		left_ear="Malignance Earring",
+		right_ear="Gwati Earring",
+		left_ring="Sangoma Ring",
 		right_ring="Ayanmo Ring",
+		back="Refraction Cape",
+	}
+	sets.midcast.Divine = {
+		main="Daybreak",
+		sub="Ammurapi Shield",
+		ammo="Elis Tome",
+		head="C. Palug Crown",
+		body="Inyanga Jubbah +2",
+		hands="Inyan. Dastanas +2",
+		legs="Aya. Cosciales +1",
+		feet="Skaoi Boots",
+		neck="Noetic Torque",
+		waist="Rumination Sash",
+		left_ear="Malignance Earring",
+		right_ear="Gwati Earring",
+		left_ring="Stikini Ring",
+		right_ring="Stikini Ring",
 		back="Refraction Cape",
 	}
 	--Black Magic Accuracy
@@ -527,8 +584,8 @@ function get_sets()
 		ear2="Psystorm earring", 
 		body="Theophany briault", 
 		hands="Gendewitha gages", 
-		ring1="Mediator's ring", 
-		ring2="Angha Ring", 
+		ring1="Stikini Ring", 
+		ring2="Stikini Ring", 
 		back="Refraction cape", 
 		waist="Aswang sash", 
 		legs="Telchine braconi", 
@@ -546,8 +603,8 @@ function get_sets()
 		neck="Noetic Torque",
 		waist="Rumination Sash",
 		left_ear="Lifestorm Earring",
-		right_ear="Psystorm Earring",
-		left_ring="Mediator's Ring",
+		right_ear="Stikini Ring",
+		left_ring="Stikini Ring",
 		right_ring="Ayanmo Ring",
 		back="Refraction Cape",
 	}
@@ -564,8 +621,8 @@ function get_sets()
 		waist="Fucho-no-Obi",
 		left_ear="Malignance Earring",
 		right_ear="Gwati Earring",
-		left_ring="Mediator's Ring",
-		right_ring="Archon Ring",
+		left_ring="Stikini Ring",
+		right_ring="Stikini Ring",
 		back="Toro Cape",
 	}		
 	sets.midcast.DrainAspir = {
@@ -581,8 +638,8 @@ function get_sets()
 		waist="Fucho-no-Obi", -- Current BIS
 		left_ear="Malignance Earring", --Current BIS
 		right_ear="Gwati Earring", --BIS Mani Earring
-		left_ring="Mediator's Ring", -- BIS Evanescence Ring
-		right_ring="Archon Ring", --BIS Stikini Ring +1
+		left_ring="Stikini Ring", -- BIS Evanescence Ring
+		right_ring="Stikini Ring", --BIS Stikini Ring +1
 		back="Toro Cape", --BIS Aurist's Cape 
 	}
 end
@@ -627,10 +684,6 @@ function precast(spell) -- Magic precast Sets
 	elseif spell.name == 'Dark Arts' and buffactive['Dark Arts'] then
 		cancel_spell()
 		send_command('input /ja "Addendum: Black" <me>')
-	end
-	if spell.name == 'Afflatus Solace' and buffactive['Afflatus Solace'] then
-		cancel_spell()
-		send_command('input /ja "Afflatus Misery" <me>')
 	end
 	if spell.target.type == 'MONSTER' then --Spellchange Status Removal to Enfeeble
 		add_to_chat(140, '**MONSTER check**')
