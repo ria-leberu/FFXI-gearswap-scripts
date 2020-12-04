@@ -1,0 +1,17 @@
+sets.exported={
+    main="Bolelabunga",
+    sub="Ammurapi Shield",
+    ammo="Clarus Stone",
+    head="Inyanga Tiara +1",
+    body={ name="Piety Briault +3", augments={'Enhances "Benediction" effect',}},
+    hands="Orison Mitts +2",
+    legs="Theo. Pantaloons",
+    feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},
+    neck="Noetic Torque",
+    waist="Embla Sash",
+    left_ear="Lifestorm Earring",
+    right_ear="Novia Earring",
+    left_ring="Mediator's Ring",
+    right_ring="Ephedra Ring",
+    back="Mending Cape",
+}

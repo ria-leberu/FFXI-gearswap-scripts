@@ -291,8 +291,8 @@ function get_sets()
 		waist="Orpheus's sash",
 		left_ear="Friomisi earring",
 		right_ear="Novio Earring",
-		left_ring="Acumen Ring", --acumen ring
-		right_ring="Shiva Ring",
+		left_ring="Shiva ring +1",
+		right_ring="Shiva ring +1",
 		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10',}},
 	}
 	sets.midcast.Cure = {

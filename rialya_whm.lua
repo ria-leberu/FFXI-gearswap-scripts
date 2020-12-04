@@ -159,7 +159,7 @@ function get_sets()
 	windower.send_command('bind %z input /ja "Sublimation" <me>')
 	windower.send_command('bind %x input /item "Echo Drops" <me>')
 	windower.send_command('alias bslp input /ma "Barsleepra" <me>')
-	
+	windower.send_command('bind %a input /ma "Cure" <t>')
 	-- Weapon and Armor Type Change (Default sets to 1) 
 	Mode_Index = 1
 	Armor_Index = 1
@@ -253,32 +253,36 @@ function get_sets()
 		feet="Chelona boots", --MPRecoveredWhileHealing+5
 	}
 	-- precast Sets
-	sets.precast = { --Precast Gear (No Quickening): FastCast
-		main="Yagrush",
-		ammo="Incantor Stone",
-		head="Nahtirah Hat",
-		body="Inyanga Jubbah +2",
-		hands={ name="Gendewitha Gages", augments={'Phys. dmg. taken -1%','Song recast delay -1',}},
-		legs="Artsieq Hose",
-		feet="Chelona Boots",
-		waist="Embla Sash",
-		left_ear="Loquac. Earring",
-		right_ear="Malignance Earring",
-		back="Swith Cape",
+	sets.precast = { --Precast Gear (No Quickening): FastCast, 66% Total with LightArts
+		--main="",
+		--sub="",
+		ammo="Incantor Stone", --2fc
+		head="Nahtirah Hat",--10fc
+		--neck="",
+		left_ear="Loquac. Earring", --2fc
+		right_ear="Malignance Earring", --4fc
+		body="Inyanga Jubbah +2", --14c
+		hands="Gendewitha Gages", --7fc
+		--ring1="", 
+		--ring2="", 
+		waist="Embla Sash", --5fc
+		back="Swith Cape", --3fc
+		legs="Artsieq Hose", --5fc BIS: Pinga pants +1
+		feet="Chelona Boots", --4fc
 	}
-	sets.precast.cure = { --Total CureCast Reduction, Fast Cast
+	sets.precast.cure = { --Total CureCast Reduction, Fast Cast 83% (Capped with Light Arts)
 		--main="Ababinili", -- cure spellcasting time -10%
 		ammo="Incantor stone", -- 2% fast cast
 		head="Nahtirah hat",  -- 10% fast cast
 		neck="Aceso's choker", -- cure spellcasting time -10% 
 		ear1="Loquacious earring", -- 2% fast cast
 		ear2="Malignance earring", --4fc
-		--body="", 
-		hands="Gendewitha gages", -- 7% fast cast
+		body="Inyanga Jubbah +2", --14fc
+		hands="Gendewitha gages", -- 7% fc
 		--ring1="", 
 		--ring2="", 
-		back="Swith cape", -- 3% fast cast
-		waist="Embla Sash",
+		back="Swith cape", -- 3% fc
+		waist="Embla Sash",-- 5% fc 
 		legs="Ebers Pantaloons +1", --healing magic casting time -12%
 		feet="Chelona boots", -- 4% fast cast
 	}
@@ -459,21 +463,21 @@ function get_sets()
 	}
 --Regen
 	sets.midcast.EnhancingRegen = {
-		--main="Ababinili", 
-		sub="Fulcio Grip", 
-		ammo="Clarus stone", 
-		head="Ebers Cap", 
-		neck="Noetic torque", 
-		ear1="Lifestorm earring", 
-		ear2="Novia earring", 
-		body="Piety Briault +3", --Enhance Regen Potency
-		hands="Orison mitts +2", 
-		ring1="Mediator's ring", 
-		ring2="Ephedra ring", 
-		back="Mending cape", 
-		waist="Bougonia rope", --conserve mp +3
-		legs="Theophany pantaloons", --Increase Regen Duration
-		feet="Orison duckbills +2",
+		main="Bolelabunga",
+		sub="Ammurapi Shield",
+		ammo="Clarus Stone",
+		head="Inyanga Tiara +1",
+		body={ name="Piety Briault +3", augments={'Enhances "Benediction" effect',}},
+		hands="Orison Mitts +2",
+		legs="Theo. Pantaloons",
+		feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},
+		neck="Noetic Torque",
+		waist="Embla Sash",
+		left_ear="Lifestorm Earring",
+		right_ear="Novia Earring",
+		left_ring="Mediator's Ring",
+		right_ring="Ephedra Ring",
+		back="Mending Cape",
 	}
 --Barspell
 	sets.midcast.EnhancingBarspell = { --At leastr 500 enhancing, Resistance+, Duration+
@@ -643,6 +647,7 @@ function get_sets()
 		back="Toro Cape", --BIS Aurist's Cape 
 	}
 end
+
 function filtered_action(spell) -- Events (Casting)
 	if spell.name == 'Aurorastorm II' then
 		cancel_spell()
@@ -652,6 +657,7 @@ function filtered_action(spell) -- Events (Casting)
 		equip(sets.weapons.dispelga)
 	end
 end
+
 function precast(spell) -- Magic precast Sets
 	if spell.action_type == 'Magic' then
 		if buffactive['Silence'] then
@@ -675,7 +681,6 @@ function precast(spell) -- Magic precast Sets
 			equip(sets.precast, sets.weapons[Mode_Set_Names[Mode_Index]])
 			add_to_chat(158, '**Precast Gear Equipped**')
 		end
-		
 	end
 	
 	if spell.name == 'Light Arts' and buffactive['Light Arts'] then -- Light Arts and Dark Arts ChangeSpell
@@ -813,6 +818,13 @@ function aftercast(spell)
 		send_command('@wait 110;input /echo ------- '..spell.english..'  10 seconds -------')
     end
 end
+
+function buff_change(name,gain,buff_details)
+    if buffactive['Sleep'] then
+		send_command('cancel stoneskin;')
+	end
+end
+
 function status_change(new,old)
 	if new == 'Resting' then
 		equip(sets.resting, sets.weapons[Mode_Set_Names[Mode_Index]])
