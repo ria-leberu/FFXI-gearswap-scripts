@@ -15,7 +15,7 @@ LUA file for White Mage gear swap and on-th-fly mode switching.
 
 Cure Notes:
 	
-	When selecting gear for single target Cures, I prefer to maximize the effect of Afflatus Solace and get MP returns.
+	When selecting gear for single target Cures, the preference is to maximize the effect of Afflatus Solace and get MP returns.
 	This locks in Ebers Briault +1, Alaunus' Cape, and Ebers Pantaloons +1.
 
 	Cure Cast Reduction (Caps at -80% cast time)
@@ -33,24 +33,25 @@ Cure Notes:
 	
 	
 	Ideal Single Target Cure Set
+		CurePot=10+11+11+11+10+3
+		CurePotII=6+2
+		Enmity=-6-6-6-6-25-5-5-10
 	
-		main="Iridal Staff",
+		main="Iridal Staff", --Iridescence:Weather+10%, CurePot+10
 		sub=
 		ammo=
-		head=
+		head="Kaykaus Mitra +1", --VIT14, MND19, HealingMagic16, Haste6, CurePotency11, SET:CurePotII (2+pieces, 4,6,8,10), PathB: Enmity-6
 		body="Ebers Bliaud +1", --Solace+14, MND33, VIT20, HealingMagic+24, 
-		hands=
+		hands="Kaykaus Cuffs +1" --VIT25, MND35, Haste3, Enmity-6, CurePotency11,  SET:CurePotII (2+pieces, 4,6,8,10), PathB:Enmity-6 or PathD:ConMP7,FC4 or PathA: MND12
 		legs="Ebers Pantaloons +1", --VIT22, MND33, Convert6%CureToMP
-		feet=
-		neck=
+		feet="Kaykaus boots +1" --VIT10, MND19, Enmity-6, ConMP7, CurePot+11, SET:CurePotII (2+pieces, 4,6,8,10)
+		neck="Cleric's torque +2" --CurePot+10, AUG:MND+15 Enmity-25 FC+10
 		waist=
-		left_ear=
+		left_ear="Glorius Earring" --Enmity-5, CurePotII+2
 		right_ear=
-		left_ring=
+		left_ring="Lebeche ring" --Enmity-5, CurePot+3
 		right_ring=
 		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+5','Enmity-10','Damage taken-5%',}},
-	
-
 
 Regen Notes:
 	
@@ -103,11 +104,11 @@ include('organizer-lib.lua')
 text = require('texts')
 display = text.new()
 mode = "Support"
-str = 'Current Mode: ${mode|Support}'
+str = 'Weapon Set: ${mode|Support}'
 display:text(str)
 display:font("Consolas")
 display:size(10)
-display:pos(400,880)
+display:pos(850,950)
 display:show()
 
 function get_sets()
@@ -158,6 +159,7 @@ function get_sets()
 	windower.send_command('bind %q input /ja "Divine Caress" <me>')
 	windower.send_command('bind %z input /ja "Sublimation" <me>')
 	windower.send_command('bind %x input /item "Echo Drops" <me>')
+	windower.send_command('bind %w input /item "Elshimo pachira fruit" <me>')
 	windower.send_command('alias bslp input /ma "Barsleepra" <me>')
 	windower.send_command('bind %a input /ma "Cure" <t>')
 	-- Weapon and Armor Type Change (Default sets to 1) 
@@ -179,18 +181,18 @@ function get_sets()
 		main="Daybreak",
 	}
 	sets.aftercast = { --[[aftercast Gear: DamageTakenDown, MagicDamageTakenDown, PhysicalDamageTakenDown, M.EvasionUp, EvasionUp]]--
-		main="Malignance Pole",
-		sub="Enki Strap",
+		main="Malignance Pole", --150hp
+		sub="Enki Strap", --45hp
 		ammo="Staunch Tathlum",
-		head="Inyanga Tiara +1",
-		body="Inyanga Jubbah +2",
-		hands="Inyan. Dastanas +2",
-		legs="Inyanga Shalwar +1",
-		feet="Inyan. Crackows +1",
+		head="Inyanga Tiara +1",--45hp
+		body="Inyanga Jubbah +2", --85hp
+		hands="Inyan. Dastanas +2",--35hp
+		legs="Inyanga Shalwar +1",--55hp
+		feet="Inyan. Crackows +1",--25hp
 		neck="Loricate Torque +1",
 		waist="Fucho-no-Obi",
-		left_ear="Odnowa Earring +1",
-		right_ear="Eabani Earring",
+		left_ear="Odnowa Earring +1", --conv110mp to 110hp
+		right_ear="Eabani Earring", --45hp
 		left_ring="Defending Ring",
 		right_ring="Shneddick Ring",
 		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+5','Enmity-10','Damage taken-5%',}},
@@ -345,11 +347,11 @@ function get_sets()
 		main="Iridal Staff",
 		sub="Amicus Grip",
 		ammo="Erlene's Notebook",
-		head={ name="Gende. Caubeen", augments={'Phys. dmg. taken -2%','"Cure" potency +2%',}},
+		head="Kaykaus Mitra +1",
 		body="Ebers Bliaud +1",
-		hands={ name="Telchine Gloves", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +10',}},
-		legs="Ebers Pantaloons +1",
-		feet="Skaoi Boots",
+		hands="Kaykaus Cuffs +1",
+		legs="Ebers Pant. +1",
+		feet="Kaykaus Boots +1",
 		neck="Phrenic Torque",
 		waist="Pythia Sash",
 		left_ear="Mendi. Earring",
@@ -362,11 +364,11 @@ function get_sets()
 		main="Iridal Staff",
 		sub="Amicus Grip",
 		ammo="Erlene's Notebook",
-		head={ name="Gende. Caubeen", augments={'Phys. dmg. taken -2%','"Cure" potency +2%',}},
+		head="Kaykaus Mitra +1",
 		body="Theo. Briault",
-		hands={ name="Telchine Gloves", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +10',}},
+		hands="Kaykaus Cuffs +1",
 		legs="Ebers Pantaloons +1",
-		feet={ name="Vanya Clogs", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
+		feet="Kaykaus Boots +1",
 		neck="Cleric's Torque",
 		waist="Pythia Sash",
 		left_ear="Lifestorm Earring",
@@ -737,10 +739,11 @@ function midcast(spell)
 	--Cure Potency
 	if spell.english:startswith('Cure') or spell.english:startswith('Cura') or spell.name == 'Full Cure' then
 		-- Elemental Obi
-		equip(sets.midcast.CurePotency)
 		if spell.element == world.weather_element or spell.element == world.day_element then
-			equip(sets.obi[spell_element])
+			equip(sets.midcast.CurePotency, sets.obi.Light)
 			add_to_chat(158, '**Day/Weather Obi Equipped**')
+		else
+			equip(sets.midcast.CurePotency)
 		end
 		add_to_chat(158, '**Cure Potency Gear Equipped**')
 	end

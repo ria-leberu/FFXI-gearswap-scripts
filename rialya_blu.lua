@@ -17,8 +17,8 @@ armorset = "Attack"
 hasteset = "Haste"
 str = 'Weapon Set: ${weaponset|Physical}  \nArmor Set: ${armorset|Attack} \nHaste: ${hasteset|No Haste}'
 display:text(str)
-display:font("Arial Black")
-display:size(12)
+display:font("Consolas")
+display:size(10)
 display:pos(850,950)
 display:show()
 
